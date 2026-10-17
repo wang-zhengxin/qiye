@@ -1,0 +1,7 @@
+dist/
+artifacts/
+.DS_Store
+node_modules/
+dist-firefox/
+dist-safari/
+safari-project/

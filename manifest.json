@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "栖页 Qiye · 书签与标签工作台",
+  "version": "1.5.0",
+  "minimum_chrome_version": "120",
+  "description": "整理标签页、标签组与书签，支持休眠、暂存、拖动与本地备份。",
+  "permissions": [
+    "tabs",
+    "tabGroups",
+    "bookmarks",
+    "storage",
+    "contextMenus",
+    "alarms"
+  ],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "action": {
+    "default_title": "打开栖页工作台",
+    "default_icon": {
+      "16": "assets/brand/qiye-16.png",
+      "32": "assets/brand/qiye-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "options_page": "index.html",
+  "commands": {
+    "open-manager": {
+      "suggested_key": {
+        "default": "Alt+Shift+T"
+      },
+      "description": "打开标签工作台"
+    },
+    "save-current": {
+      "suggested_key": {
+        "default": "Alt+Shift+C"
+      },
+      "description": "保存当前标签"
+    },
+    "save-window": {
+      "suggested_key": {
+        "default": "Alt+Shift+A"
+      },
+      "description": "保存当前窗口标签"
+    },
+    "open-search": {
+      "suggested_key": {
+        "default": "Alt+Shift+F"
+      },
+      "description": "打开全局搜索"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "short_name": "栖页 Qiye",
+  "icons": {
+    "16": "assets/brand/qiye-16.png",
+    "32": "assets/brand/qiye-32.png",
+    "48": "assets/brand/qiye-48.png",
+    "128": "assets/brand/qiye-128.png"
+  }
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faf2eb">
+  <meta name="description" content="让每一个标签页都有归处。管理浏览器标签、分组与书签的本地工作台。">
+  <title>栖页 Qiye · 书签与标签管理</title>
+  <link rel="icon" href="assets/brand/qiye.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div id="app"><div class="initial-loading">正在整理你的工作台…</div></div>
+  <div id="overlay-root"></div>
+  <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
+  <input type="file" id="import-file" accept=".json,.txt,.html" hidden>
+  <input type="file" id="preferences-file" accept=".json" hidden>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mockWebExtension} from './fixtures/webext.mjs';
+import {createEmptyState} from '../src/data.js';
+import {STORAGE_KEY,PREFS_KEY,DEFAULT_SETTINGS} from '../src/settings.js';
+const fixture=mockWebExtension();
+globalThis.browser=fixture.api;
+globalThis.chrome={runtime:{id:'callback-only'},tabs:{query(){throw new Error('Do not use Firefox Chrome callback namespace');}}};
+const {BrowserAdapter,extension,readState,writeState}=await import('../src/browser.js');
+const adapter=new BrowserAdapter(createEmptyState());
+test('Firefox reads all windows and native groups using browser Promises',async()=>{assert.equal(extension,true);const result=await adapter.listTabs(true);assert.equal(result.tabs.length,2);assert.equal(result.windows.length,2);assert.equal(result.groups[0].title,'Firefox group');assert.equal(result.tabs[0].groupId,7);});
+test('Firefox native bookmark root and separator are hidden, built-in folders protected',async()=>{const result=await adapter.listBookmarks();assert.equal(result.folders.length,1);assert.equal(result.folders[0].id,'toolbar_____');assert.equal(result.folders[0].protected,true);assert.equal(result.bookmarks[0].parentId,'toolbar_____');await assert.rejects(()=>adapter.renameBookmarkFolder('toolbar_____','Oops'),/内置/);});
+test('Firefox groups, sleep and durable state use Promise APIs',async()=>{await adapter.nativeGroup([{id:1,windowId:8}],'Test');await adapter.sleep({id:1,active:false});const state=createEmptyState();await writeState(state);assert.equal((await readState(createEmptyState())).version,1);assert.ok(fixture.calls.some(c=>c[0]==='groupUpdate'&&c[2].title==='Test'));assert.ok(fixture.calls.some(c=>c[0]==='discard'&&c[1]===1));});
+test('Firefox background bootstraps and saves native groups without a chrome Promise API',async()=>{fixture.data[STORAGE_KEY]=createEmptyState();fixture.data[PREFS_KEY]={...structuredClone(DEFAULT_SETTINGS),openAfterSave:false};const {quickSave}=await import('../background.js');await quickSave('all',fixture.live[0]);assert.equal(fixture.data[STORAGE_KEY].groups[0].name,'Firefox group');assert.equal(fixture.api.runtime.onMessage.listeners.length,1);});
+test('revoked Firefox transmission consent blocks sync tests and updates before any network request',async()=>{
+  fixture.api.runtime.getManifest=()=>({browser_specific_settings:{gecko:{data_collection_permissions:{optional:['browsingActivity','authenticationInfo']}}}});
+  fixture.api.permissions={contains:async()=>false};
+  const {runSync}=await import('../src/sync.js');
+  const state=createEmptyState();state.settings.syncProvider='webdav';state.settings.webdavUrl='https://example.com/collection.json';
+  let requests=0;
+  for(const test of [true,false])await assert.rejects(()=>runSync(state,{test,fetcher:async()=>{requests++;throw Error('network should not run');}}),/授权数据传输/);
+  assert.equal(requests,0);
+  delete fixture.api.runtime.getManifest;delete fixture.api.permissions;
+});

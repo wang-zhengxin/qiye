@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mockWebExtension} from './fixtures/webext.mjs';
+import {createEmptyState} from '../src/data.js';
+import {STORAGE_KEY,PREFS_KEY,DEFAULT_SETTINGS} from '../src/settings.js';
+const fixture=mockWebExtension({limited:true});globalThis.browser=fixture.api;
+const {BrowserAdapter}=await import('../src/browser.js');const b=new BrowserAdapter(createEmptyState());
+test('limited browser still reads multi-window tabs when bookmarks/groups/discard APIs are absent',async()=>{const result=await b.listTabs(true);assert.equal(result.tabs.length,2);assert.deepEqual(result.groups,[]);assert.ok(result.tabs.every(t=>t.groupId===-1));assert.deepEqual(await b.listBookmarks(),{bookmarks:[],folders:[]});assert.doesNotThrow(()=>b.listen(()=>{}));});
+test('unsupported grouping and sleep fail before mutating or closing tabs',async()=>{const before=fixture.calls.length;await assert.rejects(()=>b.nativeGroup([{id:1,windowId:8}],'Group'),/暂不支持/);await assert.rejects(()=>b.sleep({id:1}),/暂不支持/);assert.equal(fixture.calls.length,before);});
+test('limited browser background starts and saves sessions without unsupported APIs',async()=>{fixture.data[STORAGE_KEY]=createEmptyState();fixture.data[PREFS_KEY]={...structuredClone(DEFAULT_SETTINGS),openAfterSave:false};const {quickSave}=await import('../background.js');await quickSave('all',fixture.live[0]);assert.equal(fixture.data[STORAGE_KEY].groups.flatMap(g=>g.tabs).length,1);assert.equal(fixture.api.runtime.onMessage.listeners.length,1);assert.ok(!fixture.calls.some(c=>c[0]==='menu'&&['sleep','save-group'].includes(c[1].id)));});
