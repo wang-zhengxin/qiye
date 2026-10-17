@@ -12,7 +12,7 @@
 
 当前版本 **v1.5.0** · Manifest V3 · 简体中文 / English · 无第三方运行依赖
 
-[功能介绍](#功能介绍) · [浏览器支持](#浏览器支持) · [安装与运行](#安装与运行) · [使用指南](#使用指南) · [常见问题](#常见问题)
+[下载最新版](https://github.com/wang-zhengxin/qiye/releases/latest) · [功能介绍](#功能介绍) · [浏览器支持](#浏览器支持) · [安装与运行](#安装与运行) · [使用指南](#使用指南) · [常见问题](#常见问题)
 
 <details>
 <summary>查看工作台预览（演示数据）</summary>
@@ -59,6 +59,16 @@
 缺少某项浏览器功能时，相应操作会停用并说明原因。当前已覆盖接口模拟和构建检查，尚未在上述每个浏览器中安装实测。完整说明与官方参考见 [浏览器支持文档](BROWSERS.md)。
 
 ## 安装与运行
+
+### 下载已构建版本
+
+从 [GitHub Releases](https://github.com/wang-zhengxin/qiye/releases/latest) 下载对应浏览器的附件，无需安装 Node.js：
+
+- **Chromium ZIP**：适用于 Chrome / Edge / Brave / Opera / Vivaldi，解压后在扩展管理页选择“加载已解压的扩展程序”。
+- **Firefox ZIP**：未签名临时测试构建，解压后从 `about:debugging` 临时载入 `manifest.json`。
+- **Safari source ZIP**：供打包与签名的转换源，不能直接安装。
+
+每个 ZIP 的根目录均包含 `manifest.json`。Release 附带 `SHA256SUMS`，可用于校验下载文件。以下为从源码构建的步骤。
 
 ### 1. 获取源码
 
@@ -140,6 +150,12 @@ qiye-workspace-safari-source-v1.5.0.zip
 ```
 
 Safari ZIP 是转换源包。更多单独构建命令见下方 [开发与验证](#开发与验证)。
+
+生成完整发布文件（包含三个 ZIP、`SHA256SUMS` 和发布说明）：
+
+```bash
+npm run release:build
+```
 
 ### 更新已有安装
 
@@ -228,17 +244,38 @@ npm run build
 | `npm run build:safari` | 仅构建 Safari 转换源 |
 | `npm run package` | 重新构建并生成全部三个 ZIP |
 | `npm run package:firefox` | 仅构建并打包 Firefox |
+| `npm run release:check` | 检查项目和扩展版本是否一致 |
+| `npm run release:build` | 构建三个发布包，并生成校验文件和发布说明 |
 | `npm run safari:project` | 使用完整 Xcode 生成 macOS Safari 应用工程 |
 
-当前 **107 项自动测试**覆盖数据移动、锁定保护、回收站恢复、导入校验、去重、多窗口、保存与关闭顺序、配置迁移、同步协议、Firefox 接口和缺少功能时的处理。
+当前 **110 项自动测试**覆盖数据移动、锁定保护、回收站恢复、导入校验、去重、多窗口、保存与关闭顺序、配置迁移、同步协议、Firefox 接口、缺少功能时的处理及发布版本与校验文件。
 
 界面已通过网页交互验收；真实浏览器扩展接口与同步协议使用模拟 API 测试。尚未逐个浏览器安装实测，也未使用用户的真实 WebDAV / Gist 服务完成端到端验证。
+
+### GitHub 自动构建与发布
+
+- 推送代码到 `main` 或创建 Pull Request 时，[Build and test](https://github.com/wang-zhengxin/qiye/actions/workflows/ci.yml) 会检查版本、运行测试、构建三个浏览器包，并校验 ZIP 与 SHA-256。构建下载保留 7 天，也可在 Actions 中手动运行。
+- 推送 `v*` 版本标签时，[Release](https://github.com/wang-zhengxin/qiye/actions/workflows/release.yml) 会执行同样的检查，在附件上传完整后发布 GitHub Release。无需添加个人 Token，使用仓库自带的 `GITHUB_TOKEN`。
+- 标签必须与 `package.json`、`manifest.json` 的版本完全一致，例如两处版本为 `1.5.1` 时使用 `v1.5.1`。检查失败时不会公开 Release，已发布版本不会被流程覆盖。
+
+发布下一个版本时，先修改这两处版本、更新 README 版本示例，并按需新增 `docs/releases/v1.5.1.md` 发布说明。提交并推送代码后执行：
+
+```bash
+npm test
+npm run release:build -- --tag=v1.5.1
+git tag v1.5.1
+git push origin v1.5.1
+```
+
+上述 `1.5.1` 为下个版本示例。正式下载位于 Releases；Actions 中的构建附件用于验证。此流程生成扩展 ZIP，不负责浏览器商店提交、Firefox 签名或 Safari 应用签名。
 
 ### 项目结构
 
 ```text
 assets/                 品牌图标与界面 SVG 素材
+.github/workflows/      自动测试、构建与 Release 发布
 docs/images/            README 预览图
+docs/releases/          各版本发布说明
 src/
   app.js                主工作台、交互、弹窗与拖拽
   browser.js            浏览器操作与演示适配
@@ -294,4 +331,5 @@ Chromium 的“加载已解压的扩展程序”需要文件夹。先解压，�
 - [安装与更新](INSTALL.md)
 - [浏览器兼容与验证范围](BROWSERS.md)
 - [完整配置说明](CONFIGURATION.md)
+- [版本发布与下载](https://github.com/wang-zhengxin/qiye/releases)
 - [问题反馈](https://github.com/wang-zhengxin/qiye/issues)：请附浏览器版本、安装方式与复现步骤。

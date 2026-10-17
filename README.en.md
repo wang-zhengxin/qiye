@@ -12,7 +12,7 @@ Qiye is a local-first workspace for browser tabs and bookmarks. Manage open tabs
 
 Current version: **v1.5.0** · Manifest V3 · Simplified Chinese / English · No third-party runtime dependencies
 
-[Features](#features) · [Browser support](#browser-support) · [Install and run](#install-and-run) · [Usage guide](#usage-guide) · [FAQ](#faq)
+[Download latest](https://github.com/wang-zhengxin/qiye/releases/latest) · [Features](#features) · [Browser support](#browser-support) · [Install and run](#install-and-run) · [Usage guide](#usage-guide) · [FAQ](#faq)
 
 <details>
 <summary>View the workspace preview (demo data)</summary>
@@ -59,6 +59,16 @@ Qiye targets **desktop browsers**, with separate builds where needed.
 Unavailable features are disabled with an explanation. API simulations and build checks are covered, but the extension has not been installed and tested in every browser listed above. See [browser support and validation scope](BROWSERS.md) (Chinese) for details and official references.
 
 ## Install and run
+
+### Download a prebuilt version
+
+Download the appropriate asset from [GitHub Releases](https://github.com/wang-zhengxin/qiye/releases/latest). Node.js is not required for prebuilt packages:
+
+- **Chromium ZIP**: for Chrome / Edge / Brave / Opera / Vivaldi. Extract it, then choose **Load unpacked** on the browser's extension management page.
+- **Firefox ZIP**: an unsigned temporary test build. Extract it and temporarily load `manifest.json` from `about:debugging`.
+- **Safari source ZIP**: conversion source requiring packaging and signing; it cannot be installed directly.
+
+Each ZIP contains `manifest.json` at its root. Releases include `SHA256SUMS` to verify downloads. To build from source, follow the steps below.
 
 ### 1. Get the source
 
@@ -140,6 +150,12 @@ qiye-workspace-safari-source-v1.5.0.zip
 ```
 
 The Safari ZIP contains conversion source. For commands that build a single target, see [Development and validation](#development-and-validation).
+
+To create all release files, including three ZIP packages, `SHA256SUMS`, and release notes:
+
+```bash
+npm run release:build
+```
 
 ### Update an existing installation
 
@@ -228,17 +244,38 @@ Qiye uses JavaScript ES Modules, CSS, Manifest V3, and native browser extension 
 | `npm run build:safari` | Build Safari conversion source only. |
 | `npm run package` | Rebuild and package all three ZIP files. |
 | `npm run package:firefox` | Build and package Firefox only. |
+| `npm run release:check` | Check that project and extension versions match. |
+| `npm run release:build` | Build three release packages, checksums, and release notes. |
 | `npm run safari:project` | Generate a macOS Safari app project using full Xcode. |
 
-The current **107 automated tests** cover data movement, lock protection, recycle-bin recovery, import validation, deduplication, multiple windows, save-before-close behavior, preference migration, sync protocols, Firefox APIs, and capability fallbacks.
+The current **110 automated tests** cover data movement, lock protection, recycle-bin recovery, import validation, deduplication, multiple windows, save-before-close behavior, preference migration, sync protocols, Firefox APIs, capability fallbacks, release version checks, and checksums.
 
 The interface has been checked through web interactions. Native extension APIs and sync protocols are tested using mocks. The extension has not been installed and tested in every supported browser, and end-to-end tests against a user's real WebDAV or Gist service have not been performed.
+
+### GitHub builds and releases
+
+- Pushes to `main` and pull requests trigger [Build and test](https://github.com/wang-zhengxin/qiye/actions/workflows/ci.yml): version checks, tests, three browser builds, ZIP verification, and SHA-256 verification. Build downloads are retained for 7 days. The workflow also supports manual runs from Actions.
+- Pushing a `v*` tag triggers [Release](https://github.com/wang-zhengxin/qiye/actions/workflows/release.yml). After checks pass and all assets are uploaded, the workflow publishes a GitHub Release using the repository's built-in `GITHUB_TOKEN`; no personal token is required.
+- The tag must exactly match the versions in both `package.json` and `manifest.json`. For example, version `1.5.1` requires tag `v1.5.1`. Failed checks prevent publication, and published downloads are not overwritten by the workflow.
+
+For the next version, update both version fields and the README examples, and optionally add `docs/releases/v1.5.1.md`. Commit and push those changes, then run:
+
+```bash
+npm test
+npm run release:build -- --tag=v1.5.1
+git tag v1.5.1
+git push origin v1.5.1
+```
+
+Here `1.5.1` is an example for the next release. Releases provide permanent version downloads; Actions artifacts are for build verification. These workflows produce extension ZIPs and do not submit to browser stores, sign Firefox extensions, or sign Safari apps.
 
 ### Project structure
 
 ```text
 assets/                 Brand icons and interface SVG assets
+.github/workflows/      Automated tests, builds, and Release publishing
 docs/images/            README preview images
+docs/releases/          Version-specific release notes
 src/
   app.js                Workspace, interactions, dialogs, and drag-and-drop
   browser.js            Browser operations and demo adapter
@@ -296,5 +333,6 @@ The following detailed guides are currently in Chinese:
 - [Installation and updates](INSTALL.md)
 - [Browser compatibility and validation scope](BROWSERS.md)
 - [Full configuration guide](CONFIGURATION.md)
+- [Releases and downloads](https://github.com/wang-zhengxin/qiye/releases)
 
 [Report an issue](https://github.com/wang-zhengxin/qiye/issues) with your browser version, installation method, and steps to reproduce the problem.

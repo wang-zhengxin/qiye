@@ -1,0 +1,53 @@
+name: Build and test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Check versions
+        run: npm run release:check
+      - name: Run tests
+        run: npm test
+      - name: Build all browser packages
+        id: release
+        run: npm run release:build
+      - name: Verify ZIP integrity and checksums
+        run: |
+          for archive in artifacts/*.zip; do
+            python3 -m zipfile -t "$archive"
+          done
+          cd artifacts
+          sha256sum --check SHA256SUMS
+      - name: Upload build downloads
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: qiye-v${{ steps.release.outputs.version }}-${{ github.sha }}
+          path: |
+            artifacts/qiye-workspace-*-v${{ steps.release.outputs.version }}.zip
+            artifacts/SHA256SUMS
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7

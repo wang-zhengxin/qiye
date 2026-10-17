@@ -1,0 +1,68 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ github.ref_name }}
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Check tag and manifest versions
+        run: npm run release:check -- --tag="$RELEASE_TAG"
+      - name: Run tests
+        run: npm test
+      - name: Build all release packages
+        run: npm run release:build -- --tag="$RELEASE_TAG"
+      - name: Verify ZIP integrity and checksums
+        run: |
+          for archive in artifacts/*.zip; do
+            python3 -m zipfile -t "$archive"
+          done
+          cd artifacts
+          sha256sum --check SHA256SUMS
+      - name: Publish release with complete downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          existing_draft="$(gh api "repos/$GH_REPO/releases?per_page=100" --paginate --jq '.[] | select(.tag_name == env.RELEASE_TAG) | .draft')"
+          assets=(
+            "artifacts/qiye-workspace-chromium-$RELEASE_TAG.zip"
+            "artifacts/qiye-workspace-firefox-$RELEASE_TAG.zip"
+            "artifacts/qiye-workspace-safari-source-$RELEASE_TAG.zip"
+            artifacts/SHA256SUMS
+          )
+          if [ "$existing_draft" = false ]; then
+            echo "::error::This version is already published. Create a new version tag instead of replacing its downloads."
+            exit 1
+          elif [ "$existing_draft" = true ]; then
+            gh release upload "$RELEASE_TAG" "${assets[@]}" --clobber
+            gh release edit "$RELEASE_TAG" --title "栖页 Qiye $RELEASE_TAG" --notes-file artifacts/RELEASE_NOTES.md --verify-tag
+          else
+            gh release create "$RELEASE_TAG" "${assets[@]}" --draft --verify-tag \
+              --title "栖页 Qiye $RELEASE_TAG" --notes-file artifacts/RELEASE_NOTES.md --generate-notes
+          fi
+          gh release edit "$RELEASE_TAG" --draft=false --latest --verify-tag
+          printf 'Published: https://github.com/%s/releases/tag/%s\n' "$GH_REPO" "$RELEASE_TAG" >> "$GITHUB_STEP_SUMMARY"
