@@ -4,6 +4,8 @@
 
 # 栖页 Qiye
 
+**简体中文** | [English](README.en.md)
+
 **把多个窗口中的网页，整理成随时可以继续的浏览会话。**
 
 栖页 Qiye 是一个本地优先的浏览器标签与书签工作台。在同一页面管理当前打开的标签、原生分组、已保存会话和浏览器书签，通过拖拽完成整理、暂存与收藏。
@@ -52,7 +54,7 @@
 | --- | --- | --- | --- |
 | Chrome / Edge / Brave / Opera / Vivaldi | Chromium 内核 120+ | `dist/` | 多窗口标签、会话、原生书签；分组和休眠以浏览器实际提供的能力为准 |
 | Firefox | 140+ | `dist-firefox/` | 多窗口标签、会话、原生书签、原生分组和休眠；当前提供未签名临时测试构建 |
-| Safari（macOS） | 建议 Safari 18+，完整 Xcode | `dist-safari/` | 提供转换源和功能降级适配，尚无可安装应用；原生书签、分组和休眠不可用 |
+| Safari（macOS） | 建议 Safari 18+；本地转换需完整 Xcode | `dist-safari/` | 提供转换源和功能降级适配，尚无可安装应用；原生书签、分组和休眠不可用 |
 
 缺少某项浏览器功能时，相应操作会停用并说明原因。当前已覆盖接口模拟和构建检查，尚未在上述每个浏览器中安装实测。完整说明与官方参考见 [浏览器支持文档](BROWSERS.md)。
 
@@ -112,6 +114,8 @@ npm run safari:project
 ```
 
 脚本使用 Apple 的打包工具生成 `safari-project/`。随后在 Xcode 中选择自己的签名团队，构建并运行应用，再到 Safari 设置中启用扩展。签名、应用构建和 Safari 实机验证尚未完成，详见 [Safari 安装说明](INSTALL.md#safarimacos)。
+
+Apple 也提供 [App Store Connect 云端打包](https://developer.apple.com/documentation/safariservices/packaging-and-distributing-safari-web-extensions-with-app-store-connect)，需加入 Apple Developer Program。本项目的 `safari:project` 脚本采用本地 Xcode 流程。
 
 ### 只预览页面
 
