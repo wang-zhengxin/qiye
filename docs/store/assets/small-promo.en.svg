@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280" viewBox="0 0 846.1538461538461 538.4615384615385">
+<defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fffaf4"/><stop offset="1" stop-color="#efd2bb"/></linearGradient></defs>
+<rect width="100%" height="100%" fill="url(#paper)"/>
+<circle cx="791.1538461538461" cy="578.4615384615385" r="260" fill="#e8b894" opacity=".38"/>
+<g transform="translate(58 72) scale(1.38)"><g fill="none">
+  <defs><linearGradient id="tile" x1="7" y1="4" x2="56" y2="61" gradientUnits="userSpaceOnUse"><stop stop-color="#E8B78F"/><stop offset="1" stop-color="#B66845"/></linearGradient></defs>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#tile)"/>
+  <path d="M18 28L32 17L46 28" stroke="#FFF9F2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 30H42V48L32 42L22 48V30Z" fill="#FFF9F2"/>
+  <path d="M28 33H36" stroke="#C77750" stroke-width="2.5" stroke-linecap="round"/>
+</g></g>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif" fill="#382b24">
+<text x="165" y="136" font-size="59" font-weight="700">Qiye</text>
+<text x="65" y="243" font-size="40" font-weight="600">Room for your next idea.</text>
+<text x="65" y="304" font-size="27" fill="#785d4b">Tabs · Sessions · Bookmarks</text>
+<rect x="65" y="352" width="147" height="40" rx="20" fill="#f3e1d2"/>
+<text x="84" y="380" font-size="22" fill="#8c4f34">Local-first</text>
+<rect x="226" y="352" width="84" height="40" rx="20" fill="#c77750"/>
+<text x="249" y="380" font-size="22" fill="#fffaf4">Free</text>
+</g>
+
+</svg>

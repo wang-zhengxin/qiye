@@ -1,0 +1,16 @@
+{
+  "product": "栖页 Qiye",
+  "publisherType": "individual",
+  "operatorZh": "栖页 Qiye 个人开发者",
+  "operatorEn": "The individual developer of Qiye",
+  "supportEmail": "wangzhengxin007@gmail.com",
+  "pricing": "free",
+  "policyDate": "2026-10-19",
+  "repository": "https://github.com/wang-zhengxin/qiye",
+  "publisherDisplayName": null,
+  "publisherDisplayNameSource": "existing-store-account-profile",
+  "license": "MIT",
+  "rightsConfirmed": true,
+  "storeUrls": {"chrome": null, "edge": null, "firefox": null},
+  "privacyPolicyUrl": "https://github.com/wang-zhengxin/qiye/blob/main/docs/store/generated/privacy.en.md"
+}

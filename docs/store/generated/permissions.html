@@ -1,0 +1,64 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>权限与商店隐私字段 / Permissions and privacy fields</title><link rel="stylesheet" href="../material.css"></head><body><header><a href="../preview.html"><img src="../assets/qiye.svg" alt="">栖页 Qiye</a><a href="mailto:wangzhengxin007@gmail.com">Support</a></header><main><article class="paper"><h1>权限与商店隐私字段 / Permissions and privacy fields</h1>
+<p>版本 1.5.0。从扩展清单与实现生成；提交时核对平台字段定义。</p>
+<h2>单一用途 / Single purpose</h2>
+<p>在一个本地优先的工作台整理浏览器标签、会话与书签。</p>
+<p>Organize browser tabs, saved sessions and bookmarks in one local-first workspace.</p>
+<h2>权限理由 / Permission justifications</h2>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>中文理由</th>
+<th>English justification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tabs</code></td>
+<td>读取当前浏览器资料中的标签标题、网址与状态，在工作台展示多个窗口，并提供定位、移动、保存、休眠与关闭操作。</td>
+<td>Read titles, URLs and status of tabs in the current browser profile to show multiple windows and support switching, moving, saving, sleeping and closing tabs.</td>
+</tr>
+<tr>
+<td><code>tabGroups</code></td>
+<td>读取和管理当前打开的浏览器原生标签组，支持创建、加入、保存、解除分组与按组操作；不读取已保存但未打开的工具栏分组。</td>
+<td>Read and manage currently open native tab groups: create, join, save and ungroup them, and apply group operations. Saved but closed toolbar groups are not read.</td>
+</tr>
+<tr>
+<td><code>bookmarks</code></td>
+<td>在工作台展示并管理浏览器原生书签与文件夹，支持新增、编辑、移动、删除，以及恢复通过工作台删除的项目。</td>
+<td>Display and manage native bookmarks and folders: create, edit, move, delete and restore items deleted through Qiye.</td>
+</tr>
+<tr>
+<td><code>storage</code></td>
+<td>在用户设备保存会话、暂存、偏好、快照、回收站、同步状态与连接凭据。凭据与收藏数据分开，不进入导出和远端收藏正文。</td>
+<td>Save sessions, stash, preferences, snapshots, recycle-bin items, sync status and credentials on the device. Credentials are stored separately and excluded from collection exports and synced collection JSON.</td>
+</tr>
+<tr>
+<td><code>contextMenus</code></td>
+<td>根据用户偏好提供工作台、保存标签、保存窗口、分组、休眠与快照等右键入口。</td>
+<td>Provide configurable context-menu shortcuts for opening the workspace, saving tabs or windows, grouping, sleeping and snapshots.</td>
+</tr>
+<tr>
+<td><code>alarms</code></td>
+<td>仅在用户开启自动同步后，按其设置的间隔和时段调度远端同步。</td>
+<td>Schedule remote sync at the interval and time windows chosen by the user, only after automatic sync is enabled.</td>
+</tr>
+</tbody></table>
+<h2>可选站点权限 / Optional host access</h2>
+<p><code>https://*/*</code>, <code>http://*/*</code></p>
+<p>用户可以配置任意 WebDAV 服务，因此清单预留 HTTP(S) 可选权限。实际在保存同步配置时，仅请求所选服务的 origin；GitHub Gist 仅请求 <a href="https://api.github.com/*%E3%80%82%E8%BF%99%E4%BA%9B%E6%9D%83%E9%99%90%E7%94%A8%E4%BA%8E%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE%E5%92%8C%E8%AE%A4%E8%AF%81%EF%BC%8C%E4%B8%8D%E7%94%A8%E4%BA%8E%E6%B3%A8%E5%85%A5%E8%84%9A%E6%9C%AC%E3%80%81%E8%AF%BB%E5%8F%96%E7%BD%91%E9%A1%B5%E6%AD%A3%E6%96%87%E3%80%81%E5%B9%BF%E5%91%8A%E6%88%96%E8%B7%9F%E8%B8%AA%E3%80%82%E5%BD%93%E5%89%8D">https://api.github.com/*。这些权限用于同步数据和认证，不用于注入脚本、读取网页正文、广告或跟踪。当前</a> HTTP 支持需要在商店正式发布前完成安全处理；不要把它描述成全程加密。</p>
+<p>Users may configure their own WebDAV server, so optional host patterns allow user-selected HTTP(S) origins. Only the selected service origin is requested when sync is configured; Gist requests <a href="https://api.github.com/">https://api.github.com/</a>*. Access is used for sync and authentication, not content-script injection, page-content reading, advertising or tracking. Review HTTP support before store publication; do not claim all connections are encrypted.</p>
+<h2>远程代码 / Remote code</h2>
+<p>不使用远程执行代码。脚本和样式随扩展打包；同步只解析经校验的 JSON 数据。</p>
+<p>No remotely hosted executable code. Scripts and styles are packaged with the extension; sync parses validated JSON data only.</p>
+<h2>数据披露填写依据 / Data disclosure basis</h2>
+<ul>
+<li>浏览活动：标签标题与网址用于本地整理；开启同步后，相应已保存链接发送到用户选择的服务。</li>
+<li>认证信息：用户主动填写的 WebDAV 凭据或 GitHub Token，用于连接所选服务。</li>
+<li>书签：访问原生书签并缓存于本机；原生书签树不进入同步正文，主动复制进会话的链接按会话同步。</li>
+<li>搜索词：仅在可选开始页提交搜索时导航到用户所选搜索引擎；没有自动搜索跟踪。</li>
+<li>不读取完整浏览历史、网页正文或网页表单；不包含广告、分析 SDK 或第三方站点图标网络请求。</li>
+<li>可声明无出售数据、无定向广告、无贷款或信用资格判断用途；不能填写“没有处理或传输任何数据”。</li>
+</ul>
+<p>Firefox 当前生成清单声明 required: none，optional: browsingActivity, authenticationInfo。这不是签名或审核通过证明。内置搜索及同步偏好对应的数据分类需在 AMO 校验时一并核对；待核对项属于工程验收，不需要用户编写声明。</p>
+<p>依据：<a href="https://developer.chrome.com/docs/webstore/cws-dashboard-privacy">Chrome 隐私字段</a>、<a href="https://extensionworkshop.com/documentation/develop/firefox-builtin-data-consent/">Firefox 数据传输同意</a>。</p>
+</article></main><footer>Qiye · 1.5.0 · 2026-10-19</footer></body></html>

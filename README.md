@@ -246,6 +246,7 @@ npm run build
 | `npm run package:firefox` | 仅构建并打包 Firefox |
 | `npm run release:check` | 检查项目和扩展版本是否一致 |
 | `npm run release:build` | 构建三个发布包，并生成校验文件和发布说明 |
+| `npm run store:materials` | 从工程配置生成三家商店中英文文案、隐私政策、权限说明与支持文档 |
 | `npm run safari:project` | 使用完整 Xcode 生成 macOS Safari 应用工程 |
 
 当前 **110 项自动测试**覆盖数据移动、锁定保护、回收站恢复、导入校验、去重、多窗口、保存与关闭顺序、配置迁移、同步协议、Firefox 接口、缺少功能时的处理及发布版本与校验文件。
@@ -328,6 +329,8 @@ Chromium 的“加载已解压的扩展程序”需要文件夹。先解压，�
 
 ## 更多文档
 
+- [商店提交材料与自动生成说明](docs/store/README.md)
+- [MIT 开源许可证](LICENSE)
 - [安装与更新](INSTALL.md)
 - [浏览器兼容与验证范围](BROWSERS.md)
 - [完整配置说明](CONFIGURATION.md)

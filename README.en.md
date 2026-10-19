@@ -246,6 +246,7 @@ Qiye uses JavaScript ES Modules, CSS, Manifest V3, and native browser extension 
 | `npm run package:firefox` | Build and package Firefox only. |
 | `npm run release:check` | Check that project and extension versions match. |
 | `npm run release:build` | Build three release packages, checksums, and release notes. |
+| `npm run store:materials` | Generate bilingual store listings, privacy policies, permission explanations, and support documents. |
 | `npm run safari:project` | Generate a macOS Safari app project using full Xcode. |
 
 The current **110 automated tests** cover data movement, lock protection, recycle-bin recovery, import validation, deduplication, multiple windows, save-before-close behavior, preference migration, sync protocols, Firefox APIs, capability fallbacks, release version checks, and checksums.
@@ -327,6 +328,8 @@ Sleeping keeps the browser tab and reloads its page when activated. Closing remo
 It only records links opened through Qiye; the extension does not read your complete browser history. Bookmarks deleted outside Qiye also do not appear in Qiye's recycle bin.
 
 ## Further documentation
+
+The project is available under the [MIT License](LICENSE). [Store submission materials](docs/store/README.md) include bilingual listings, privacy policies, reviewer instructions, and artwork generated from this project.
 
 The following detailed guides are currently in Chinese:
 

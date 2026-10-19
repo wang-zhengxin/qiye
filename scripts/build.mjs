@@ -25,7 +25,7 @@ export async function buildTargets(targets=Object.keys(TARGETS)){
   for(const target of targets){
     const manifest=manifestFor(source,target),destination=resolve(root,TARGETS[target]);
     await rm(destination,{recursive:true,force:true});await mkdir(destination,{recursive:true});
-    for(const name of ['index.html','styles.css','settings.css','auxiliary.css','popup.html','newtab.html','src','assets','background.js'])await cp(resolve(root,name),resolve(destination,name),{recursive:true});
+    for(const name of ['index.html','styles.css','settings.css','auxiliary.css','popup.html','newtab.html','src','assets','background.js','LICENSE'])await cp(resolve(root,name),resolve(destination,name),{recursive:true});
     await writeFile(resolve(destination,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
     await stat(resolve(destination,manifest.options_page));
     for(const path of manifest.background.scripts||[manifest.background.service_worker])await stat(resolve(destination,path));
