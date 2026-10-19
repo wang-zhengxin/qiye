@@ -10,7 +10,7 @@
 
 Qiye is a local-first workspace for browser tabs and bookmarks. Manage open tabs, native tab groups, saved sessions, and browser bookmarks in one place, with drag-and-drop organization and a stash for links you want to revisit.
 
-Current version: **v1.5.0** · Manifest V3 · Simplified Chinese / English · No third-party runtime dependencies
+Current version: **v1.5.1** · Manifest V3 · Simplified Chinese / English · No third-party runtime dependencies
 
 [Download latest](https://github.com/wang-zhengxin/qiye/releases/latest) · [Features](#features) · [Browser support](#browser-support) · [Install and run](#install-and-run) · [Usage guide](#usage-guide) · [FAQ](#faq)
 
@@ -31,8 +31,13 @@ The screenshot shows the Chinese interface with demo tabs from three windows. Th
 - **Browser bookmarks**: Work directly with native bookmarks and folders. Add and edit links, create nested folders, move items by dragging, and restore items deleted through Qiye. Built-in and managed folders are protected.
 - **Tab sleep and stash**: Unload background tabs to release memory while keeping them in the tab strip, or stash their URLs for later organization.
 - **Search and backups**: Search tabs, sessions, stashed links, and bookmarks. Import and export collections, create workspace snapshots, and recover deleted saved items from the recycle bin.
+- **Pane sizes and custom names**: Drag navigation, content and side-card edges to resize them. Sizes are retained locally. Set a Qiye display name for open tabs, rename saved tabs and native groups, and scroll long lists independently without losing your position when selecting tabs.
 - **Configurable workspace**: 77 preferences across 9 sections cover saving and opening behavior, appearance, title cleanup, context menus, the popup, the new-tab page, and search.
 - **Optional remote sync**: Connect your own WebDAV server or GitHub Secret Gist to sync sessions, stashed links, and optional preferences, manually or on a schedule.
+
+Drag a separator to resize a pane. Double-click it or press Home to reset that dimension; use the top-bar reset control to restore all sizes. Focus a separator and use arrow keys to adjust it, holding Shift for larger steps. Narrow screens use a single column and hide width controls.
+
+Renaming an open tab changes its Qiye display name only, without modifying the page or browser tab-strip title. Tabs with the same full URL share the name; leave it blank to restore the page title. These names and pane sizes stay in local browser storage and are excluded from remote preference sync. Saving a tab to a session or bookmark retains its current display name.
 
 ### How the different types of content work
 
@@ -144,9 +149,9 @@ npm run package
 Packages are written to `artifacts/`. Their names follow the project version:
 
 ```text
-qiye-workspace-chromium-v1.5.0.zip
-qiye-workspace-firefox-v1.5.0.zip
-qiye-workspace-safari-source-v1.5.0.zip
+qiye-workspace-chromium-v1.5.1.zip
+qiye-workspace-firefox-v1.5.1.zip
+qiye-workspace-safari-source-v1.5.1.zip
 ```
 
 The Safari ZIP contains conversion source. For commands that build a single target, see [Development and validation](#development-and-validation).
@@ -249,7 +254,7 @@ Qiye uses JavaScript ES Modules, CSS, Manifest V3, and native browser extension 
 | `npm run store:materials` | Generate bilingual store listings, privacy policies, permission explanations, and support documents. |
 | `npm run safari:project` | Generate a macOS Safari app project using full Xcode. |
 
-The current **110 automated tests** cover data movement, lock protection, recycle-bin recovery, import validation, deduplication, multiple windows, save-before-close behavior, preference migration, sync protocols, Firefox APIs, capability fallbacks, release version checks, and checksums.
+The current **118 automated tests** cover data movement, lock protection, recycle-bin recovery, import validation, deduplication, multiple windows, save-before-close behavior, preference migration, sync protocols, Firefox APIs, capability fallbacks, release version checks, and checksums.
 
 The interface has been checked through web interactions. Native extension APIs and sync protocols are tested using mocks. The extension has not been installed and tested in every supported browser, and end-to-end tests against a user's real WebDAV or Gist service have not been performed.
 
@@ -257,18 +262,18 @@ The interface has been checked through web interactions. Native extension APIs a
 
 - Pushes to `main` and pull requests trigger [Build and test](https://github.com/wang-zhengxin/qiye/actions/workflows/ci.yml): version checks, tests, three browser builds, ZIP verification, and SHA-256 verification. Build downloads are retained for 7 days. The workflow also supports manual runs from Actions.
 - Pushing a `v*` tag triggers [Release](https://github.com/wang-zhengxin/qiye/actions/workflows/release.yml). After checks pass and all assets are uploaded, the workflow publishes a GitHub Release using the repository's built-in `GITHUB_TOKEN`; no personal token is required.
-- The tag must exactly match the versions in both `package.json` and `manifest.json`. For example, version `1.5.1` requires tag `v1.5.1`. Failed checks prevent publication, and published downloads are not overwritten by the workflow.
+- The tag must exactly match the versions in both `package.json` and `manifest.json`. For example, version `1.5.2` requires tag `v1.5.2`. Failed checks prevent publication, and published downloads are not overwritten by the workflow.
 
-For the next version, update both version fields and the README examples, and optionally add `docs/releases/v1.5.1.md`. Commit and push those changes, then run:
+For the next version, update both version fields and the README examples, and optionally add `docs/releases/v1.5.2.md`. Commit and push those changes, then run:
 
 ```bash
 npm test
-npm run release:build -- --tag=v1.5.1
-git tag v1.5.1
-git push origin v1.5.1
+npm run release:build -- --tag=v1.5.2
+git tag v1.5.2
+git push origin v1.5.2
 ```
 
-Here `1.5.1` is an example for the next release. Releases provide permanent version downloads; Actions artifacts are for build verification. These workflows produce extension ZIPs and do not submit to browser stores, sign Firefox extensions, or sign Safari apps.
+Here `1.5.2` is an example for the next release. Releases provide permanent version downloads; Actions artifacts are for build verification. These workflows produce extension ZIPs and do not submit to browser stores, sign Firefox extensions, or sign Safari apps.
 
 ### Project structure
 

@@ -23,3 +23,10 @@ test('destination selection queues tabs without closing or saving them',async()=
 test('browser native context actions and startup hooks are registered',()=>{assert.equal(chrome.runtime.onStartup.listeners.length,1);assert.equal(chrome.windows.onCreated.listeners.length,1);assert.equal(chrome.alarms.onAlarm.listeners.length,1);assert.equal(chrome.contextMenus.onClicked.listeners.length,1);});
 test('new-tab preference redirects only browser new tabs',async()=>{reset({newTabMode:'home'});await chrome.tabs.onCreated.listeners[0]({...liveTabs[4]});await new Promise(r=>setTimeout(r,5));assert.ok(calls.some(c=>c[0]==='update'&&c[2].url==='chrome-extension://test/newtab.html'));});
 test('new window preference opens a pinned workspace when requested',async()=>{reset({newWindowOpen:true,pinManager:true});await chrome.windows.onCreated.listeners[0]({id:7,type:'normal'});assert.ok(calls.some(c=>c[0]==='create'&&c[1].windowId===7&&c[1].pinned));});
+
+test('browser quick save retains workspace aliases in saved links',async()=>{
+ reset();const {writeTabTitles,updateTabTitle}=await import('../src/tab-titles.js');
+ await writeTabTitles(updateTabTitle({},liveTabs[0].url,'My named page'));
+ await quickSave('current',liveTabs[0]);assert.equal(data[STORAGE_KEY].groups[0].tabs[0].title,'My named page');
+ await writeTabTitles({});
+});

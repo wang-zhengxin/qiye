@@ -1,6 +1,6 @@
 # Qiye Privacy Policy
 
-Effective date: 2026-10-19 · Product version reviewed: 1.5.0
+Effective date: 2026-10-19 · Product version reviewed: 1.5.1
 
 Operator: The individual developer of Qiye. Contact: wangzhengxin007@gmail.com.
 
@@ -10,11 +10,11 @@ Qiye is a free desktop browser extension for organizing tabs, native tab groups,
 
 ## Information used locally
 
-Qiye accesses tab titles, URLs, window and group identifiers, grouping information, and tab status to display and manage open pages. It accesses bookmark names, URLs, folder relationships, and identifiers to provide bookmark management. A local workspace cache may include bookmark information. Saved sessions, stashed links, favorites and locks, preferences and preference history, snapshots, items in the recycle bin, sync status, and links opened through Qiye are stored in the browser profile. If you enable startup restoration, Qiye stores a local snapshot of eligible previously open pages. Qiye does not use the browser history API to obtain a complete browsing history and does not inject scripts to read website content, form fields, or keystrokes on websites.
+Qiye accesses tab titles, URLs, window and group identifiers, grouping information, and tab status to display and manage open pages. It accesses bookmark names, URLs, folder relationships, and identifiers to provide bookmark management. A local workspace cache may include bookmark information. Saved sessions, stashed links, favorites and locks, preferences and preference history, device-local pane sizes and URL-based custom tab names, snapshots, items in the recycle bin, sync status, and links opened through Qiye are stored in the browser profile. If you enable startup restoration, Qiye stores a local snapshot of eligible previously open pages. Qiye does not use the browser history API to obtain a complete browsing history and does not inject scripts to read website content, form fields, or keystrokes on websites.
 
 ## Optional external connections
 
-Remote sync is disabled by default. If you choose and configure WebDAV or GitHub Gist, Qiye sends saved-session names, link titles and URLs, stashed links, associated identifiers and timestamps, and optionally portable preferences to the service you select. Native bookmark trees, recent-link records, recycle-bin records, and local snapshots are not part of the remote sync payload. Links you explicitly copy or import into saved sessions can be included as saved-session links. Connection settings and credentials are excluded from synced preference data.
+Remote sync is disabled by default. If you choose and configure WebDAV or GitHub Gist, Qiye sends saved-session names, link titles and URLs, stashed links, associated identifiers and timestamps, and optionally portable preferences to the service you select. Native bookmark trees, recent-link records, recycle-bin records, local snapshots, pane sizes, and the custom open-tab name map are not part of the remote sync payload. A display name copied into a saved session is included as that saved link’s title. Links you explicitly copy or import into saved sessions can be included as saved-session links. Connection settings and credentials are excluded from synced preference data.
 
 WebDAV credentials are sent to your configured server for authentication; a GitHub token is sent to GitHub's API for authentication. These credentials are not included in exported collections or remote collection JSON. A provider receives normal connection information such as your IP address and request metadata. GitHub connection tests can request your account information to validate authentication. Qiye does not send these collections to a developer-operated sync server.
 
@@ -22,7 +22,7 @@ If you choose the optional start page and submit a search, your query is sent by
 
 ## Security and storage limitations
 
-Use HTTPS for remote sync. Version 1.5.0 also accepts HTTP WebDAV addresses; HTTP does not encrypt connection content or authentication information. Do not use it for public-network transfers. Secret Gists are unlisted, not private encrypted vaults: anyone who obtains their URL may be able to read them. Qiye does not implement end-to-end encryption.
+Use HTTPS for remote sync. Version 1.5.1 also accepts HTTP WebDAV addresses; HTTP does not encrypt connection content or authentication information. Do not use it for public-network transfers. Secret Gists are unlisted, not private encrypted vaults: anyone who obtains their URL may be able to read them. Qiye does not implement end-to-end encryption.
 
 Extension credentials are stored separately in browser-local extension storage. Qiye does not encrypt them with an additional application encryption key or store them in the operating system's keychain. Protect your browser profile and device and use narrowly scoped, revocable credentials. Collection exports are ordinary readable JSON files, not encrypted backups.
 

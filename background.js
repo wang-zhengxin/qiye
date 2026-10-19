@@ -4,6 +4,7 @@ import {readState,writeState,writePreferences,readCredentials} from './src/brows
 import {PREFS_KEY,inSyncWindow} from './src/settings.js';
 import {collectableTabs,saveCollection} from './src/policies.js';
 import {runSync,SYNC_STATUS_KEY} from './src/sync.js';
+import {applyTabTitles,readTabTitles} from './src/tab-titles.js';
 
 const managerUrl=api.runtime.getURL('index.html');
 const capabilities=detectCapabilities(api);
@@ -28,7 +29,7 @@ export async function quickSave(scope='current',sourceTab){return exclusive(asyn
   if(scope==='others')tabs=tabs.filter(t=>t.id!==active.id);
   if(scope==='left')tabs=tabs.filter(t=>t.index<active.index);
   if(scope==='right')tabs=tabs.filter(t=>t.index>active.index);
-  tabs=collectableTabs(tabs,settings);if(!tabs.length)throw new Error('没有符合保存条件的标签页，请检查固定标签和网址过滤规则');
+  tabs=collectableTabs(applyTabTitles(tabs,await readTabTitles()),settings);if(!tabs.length)throw new Error('没有符合保存条件的标签页，请检查固定标签和网址过滤规则');
   if(settings.askDestination){await api.storage.session.set({pendingCollection:{tabIds:tabs.map(t=>t.id),scope}});await openManager({windowId:active.windowId,collect:true});return {message:'请在工作台选择保存位置'};}
   const preserveGroups=settings.preserveNativeGroups&&capabilities.nativeGroups;
   const groups=preserveGroups?await nativeGroups():[],batches=new Map();

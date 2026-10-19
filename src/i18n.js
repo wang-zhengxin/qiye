@@ -7,6 +7,15 @@ Object.assign(messages,{'存入浏览器书签':'Save to browser bookmarks','存
 Object.assign(messages,{'工作台所在窗口':'Workspace window','正在使用':'Focused','无痕':'Incognito','切换到此窗口':'Focus this window','没有符合条件的标签页':'No matching open tabs','展示同一浏览器资料下的已打开窗口。窗口和标签变化会实时更新；点击标签可切换到它所在的窗口。':'Shows open windows in this browser profile. Changes update automatically. Click a tab to focus its window.','当前为多个窗口的交互演示；安装扩展后会读取同一浏览器资料下的真实窗口与标签。':'This preview demonstrates multiple windows. Install the extension to manage real windows in this browser profile.','已切换到所选窗口':'Focused the selected window'});
 Object.assign(messages,{'已保存会话':'Saved sessions','保存会话':'Save session','保存的浏览会话，关闭标签后仍可恢复':'Saved browsing sessions, ready to restore after tabs are closed','分组用于整理当前打开的标签，每个标签只显示一次；保存会话后，可在“已保存会话”中恢复。':'Groups organize your open tabs. Each tab appears once. Save a session to restore it later from Saved sessions.'});
 Object.assign(messages,{"浏览器支持": "Browser support", "浏览器已连接": "Browser connected", "此浏览器暂不支持原生书签管理，可使用已保存会话。": "This browser cannot manage native bookmarks. You can use saved sessions.", "此浏览器暂不支持原生书签管理。你仍可保存会话、暂存网址，以及导入和导出收藏。": "Native bookmarks are unavailable in this browser. You can still save sessions, stash links, and import or export collections.", "此浏览器暂不支持标签休眠": "Tab sleep is unavailable in this browser", "此浏览器暂不支持原生分组管理": "Native tab groups are unavailable in this browser", "此浏览器暂不支持原生书签管理": "Native bookmarks are unavailable in this browser", "此浏览器暂不支持此功能，配置会保留": "This feature is unavailable in this browser. Your preference is retained.", "此浏览器的部分功能暂不可用，可保存会话后关闭标签，稍后再恢复。": "Some features are unavailable in this browser. Save a session before closing tabs to restore them later.", "拖入已保存会话或暂存区，留下稍后要用的网址。": "Drag links into a saved session or stash for later.", "可暂存或保存会话，再关闭暂时不用的标签。": "Stash links or save a session before closing tabs you do not need right now.", "按浏览器安装对应版本，每份收藏保存在当前浏览器中。部分功能以浏览器实际支持为准。": "Install the package for your browser. Collections stay in that browser, and features depend on its capabilities.", "使用 Chromium 通用包，支持多窗口标签、分组、书签和休眠。": "Use the Chromium package for multi-window tabs, native groups, bookmarks and tab sleep.", "Firefox 140 及以上": "Firefox 140 or newer", "使用 Firefox 专用包，支持多窗口标签、分组、书签和休眠。未签名版本用于临时加载测试。": "Use the Firefox package for multi-window tabs, native groups, bookmarks and tab sleep. This unsigned build is for temporary testing.", "Safari（macOS）": "Safari (macOS)", "提供转换源包，需要通过 Xcode 打包。可管理标签和保存会话；原生书签、分组与休眠暂不可用。": "Conversion source is provided for Xcode packaging. Tabs and saved sessions are available; native bookmarks, groups and tab sleep are unavailable."});
+Object.assign(messages,{
+ '恢复默认分栏':'Reset pane sizes','分栏已恢复默认':'Pane sizes reset','无法保存分栏尺寸':'Unable to save pane sizes',
+ '重命名标签':'Rename tab','重命名浏览器分组':'Rename browser group','显示名称':'Display name','标签名称已保存':'Tab name saved','标签组名称已保存':'Group name saved',
+ '仅修改栖页显示名称，同一网址共用此名称。留空可恢复网页原标题。':'Changes the name shown in Qiye. Tabs with the same URL share this name. Leave blank to restore the page title.',
+ '此标签的网址不支持自定义名称':'Custom names are unavailable for this URL','浏览器标签组已关闭':'This browser group is no longer open','标签不存在':'This tab is no longer available'
+});
+for(const [label,en] of Object.entries({'调整导航栏宽度':'Resize navigation width','调整导航栏高度':'Resize navigation height','调整标签栏宽度':'Resize browser pane width','调整内容区高度':'Resize content height','调整暂存区高度':'Resize stash height','调整标签列表高度':'Resize tab list height'})){
+ messages[label]=en;messages[label+' · 拖动调整，双击恢复默认']=en+' · Drag to resize; double-click to reset';
+}
 export function translateText(text,language='zh-CN'){
   if(language!=='en')return text;
   const trimmed=text.trim();if(messages[trimmed])return text.replace(trimmed,messages[trimmed]);
@@ -15,6 +24,6 @@ export function translateText(text,language='zh-CN'){
 export function applyTranslations(root,language){
   if(language!=='en'||!root)return;
   const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;
-  while(node=walk.nextNode()){if(node.parentElement?.closest('.saved-title,.live-tab-title,.group-info h3,.bookmark-info h3,.brand-name,.folder-title,.native-folder-title,.native-group-title'))continue;node.textContent=translateText(node.textContent,language);}
+  while(node=walk.nextNode()){if(node.parentElement?.closest('.saved-title,.live-tab-title,.group-info h3,.bookmark-info h3,.brand-name,.folder-title,.native-folder-title,.native-group-title,.original-title-note'))continue;node.textContent=translateText(node.textContent,language);}
   for(const el of root.querySelectorAll('[aria-label],[title],[placeholder]'))for(const attr of ['aria-label','title','placeholder'])if(el.hasAttribute(attr))el.setAttribute(attr,translateText(el.getAttribute(attr),language));
 }

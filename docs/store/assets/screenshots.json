@@ -3,10 +3,13 @@
   "sampleData": true,
   "credentialsUsed": false,
   "sources": {
-    "src/app.js": "1b494f30fc5db017377215debb8d924236e7dc18be54c3e49096c2759376d7d2",
+    "src/app.js": "dbebe984bb22d5c07d063fa38653bb9e9ace60dfd0f6785753ceeda602be7e47",
     "src/settings-view.js": "4ad7decb823876898040e14fd7a0f33f4cd143d13f5e47b251b508b93004766a",
     "styles.css": "e9b5d1b215f66eb055012a5789a450a1ddf7d01bdcbd7fce0212bfb04406dd95",
     "settings.css": "3c212c879d5c72f1f9daadacc5ba36ac2b0eb2dc21eeb709f14fb061a10b666e",
+    "panes.css": "b4442cd1c9be84f4dd49646656dbe55c2ea5239cd59c5f04cb96d0c1908df7bc",
+    "src/layout.js": "a6459ca454407a26753d85eb72ab869d3c647b8d4e6ba18c6db023e011495d10",
+    "src/tab-titles.js": "19738ef941ac1a2ccaf8d5bb072657a07f75716885100feb0244a61500c28297",
     "src/data.js": "a3a05e4697c1af4b21a11395518df8c6b43035a045977b2e45f7df42192866a6"
   },
   "captures": [
@@ -17,7 +20,7 @@
       "locale": "zh-CN",
       "route": "?view=tabs",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "6db5ff407ae21201ceea23e0f9e9e8150289a5d409a421595267926e5c6404a6"
+      "sha256": "e98a7bff929095b3309c221b524cc89c416f35793a8f729715380e36f691d972"
     },
     {
       "file": "zh-CN/02-sessions.png",
@@ -26,7 +29,7 @@
       "locale": "zh-CN",
       "route": "?view=groups",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "f3db98f272c00445312a96c46949ff872198d5f3e6ff5c64ffb54cb54bab8845"
+      "sha256": "32425dfa2d39d2ff62153a6988603eabc35a19b0437278e864c41b220cdcf111"
     },
     {
       "file": "zh-CN/03-bookmarks.png",
@@ -35,7 +38,7 @@
       "locale": "zh-CN",
       "route": "?view=bookmarks&folder=all",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "467c70f29d6e8c81debd03d54dcc23d2aae64247400bacfa96f8d1b49d5e2591"
+      "sha256": "a2b80b19ed141822172fbd2576f7e72d41aaa60c1a05e8d887e5729c8717f405"
     },
     {
       "file": "zh-CN/04-preferences.png",
@@ -44,7 +47,7 @@
       "locale": "zh-CN",
       "route": "?view=settings&section=display",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "6dc80cda638d4ef52555d4f206836598d372d464500cfda3a84b697f9735b7a5"
+      "sha256": "630a29a54c6e66e490fad92deab200fdce89160182fa5937df4016138fca9412"
     },
     {
       "file": "zh-CN/05-sync.png",
@@ -53,7 +56,7 @@
       "locale": "zh-CN",
       "route": "?view=settings&section=sync",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "09e65796af21f786d56fb539a2269b3bfa69ba89e3f95e184c31024b123252e8"
+      "sha256": "1606eeb1b69770a4f5f2164a6b88d7b87f964ab39ab4f1ac7c14e65d1139035c"
     },
     {
       "file": "en/01-tabs.png",
@@ -62,7 +65,7 @@
       "locale": "en",
       "route": "?view=tabs",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "7221d98b1045cc498e00edb855c5b968d6bbf60f71c3550da2b40f8e4cedd9c3"
+      "sha256": "aa88d23432bb7436032a69dc5f70cba7aba4185d78e2b61c85bb4bcea45d768f"
     },
     {
       "file": "en/02-sessions.png",
@@ -71,7 +74,7 @@
       "locale": "en",
       "route": "?view=groups",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "e09caf5cf57ec9e4df877a23a9d7298025d5d930d2409848667c4d154848a9a3"
+      "sha256": "7f17e2dc94a54d281253146669aa2d51e074b8f310629935814320a3cbb321bb"
     },
     {
       "file": "en/03-bookmarks.png",
@@ -80,7 +83,7 @@
       "locale": "en",
       "route": "?view=bookmarks&folder=all",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "bba322898860e951c1dc85f30ee1662b8c81c6b457e3b9de88be6eb68c8c33f0"
+      "sha256": "a98cbc8f7854f4d947e9d63ba943ec37bb3d3c7459676322f09cac3278925abf"
     },
     {
       "file": "en/04-preferences.png",
@@ -89,7 +92,7 @@
       "locale": "en",
       "route": "?view=settings&section=display",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "11225e6e719814c4e9f7a882db7d9ca00e5d821e26518c5a3f2e683a3fa5912e"
+      "sha256": "a6e8d02778eb6933d673e8c379970d85d58998a72b2a5e86e01a74b7353b6cf7"
     },
     {
       "file": "en/05-sync.png",
@@ -98,7 +101,7 @@
       "locale": "en",
       "route": "?view=settings&section=sync",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "176ad97f4d421b66f4d9a0431b93eefe7b1874190087dae9603ceb46df7627f8"
+      "sha256": "fea43be05ee5fcfae9e1925f59a04b764c3d564618e361d31352d7f959f90f75"
     }
   ]
 }

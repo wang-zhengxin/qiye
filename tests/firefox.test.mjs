@@ -22,3 +22,16 @@ test('revoked Firefox transmission consent blocks sync tests and updates before 
   assert.equal(requests,0);
   delete fixture.api.runtime.getManifest;delete fixture.api.permissions;
 });
+
+test('Firefox renames native groups through the group API and stores tab aliases locally',async()=>{
+ const {writeTabTitles,updateTabTitle,TAB_TITLES_KEY}=await import('../src/tab-titles.js');
+ await adapter.renameNativeGroup(7,'Renamed group');assert.ok(fixture.calls.some(c=>c[0]==='groupUpdate'&&c[1]===7&&c[2].title==='Renamed group'));
+ await writeTabTitles(updateTabTitle({},fixture.live[0].url,'Custom Firefox tab'));
+ assert.equal((await adapter.listTabs(true)).tabs[0].title,'Custom Firefox tab');
+ assert.equal(fixture.live[0].title,'Example');
+ let updates=0;adapter.listen(()=>updates++);
+ for(const listener of fixture.api.storage.onChanged.listeners)listener({[TAB_TITLES_KEY]:{newValue:fixture.data[TAB_TITLES_KEY]}},'local');
+ await new Promise(resolve=>setTimeout(resolve,200));assert.equal(updates,1);
+ await writeTabTitles({});
+ assert.equal((await adapter.listTabs(true)).tabs[0].title,'Example');
+});

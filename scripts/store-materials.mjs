@@ -27,7 +27,7 @@ FIND AND RECOVER
 Search tabs and saved links, set items aside in a stash, create local snapshots, import and export collections, and recover items deleted through Qiye from its recycle bin.
 
 MAKE THE WORKSPACE YOURS
-Choose light, dark, or system appearance and use Chinese or English controls. ${SETTING_FIELDS.length} preferences across ${SETTINGS_SECTIONS.length} sections cover saving, opening, display, search, shortcuts, context menus, and an optional start page.
+Drag pane separators to resize the workspace; sizes stay on this device. Give open tabs custom Qiye display names, rename saved tabs and native groups, and scroll long lists independently. Open-tab names do not modify website or browser tab-strip titles. Choose light, dark, or system appearance and use Chinese or English controls. ${SETTING_FIELDS.length} preferences across ${SETTINGS_SECTIONS.length} sections cover saving, opening, display, search, shortcuts, context menus, and an optional start page.
 
 LOCAL BY DEFAULT, OPTIONAL SYNC
 Core features work without a Qiye account or subscription. Collections and preferences stay in browser-local storage by default. You may connect your own WebDAV service or GitHub Secret Gist to sync saved sessions, stashed links, and selected preferences. Sync is off until configured. Network access is requested when you configure the service. Credentials are used to authenticate to your selected provider and are excluded from collection exports and synced preference data. Native bookmark-tree sync remains the browser's responsibility.
@@ -50,7 +50,7 @@ Version ${version}. Support: ${profile.supportEmail}`:`栖页 Qiye 是为 ${brow
 搜索标签与收藏，把尚未整理的网址先放入暂存区。支持本地快照、收藏导入导出，以及恢复通过工作台删除的收藏内容。直接在浏览器其他界面删除的书签不进入栖页回收站。
 
 按自己的习惯配置
-提供中文和英文主要操作界面、浅色、深色和跟随系统外观。${SETTINGS_SECTIONS.length} 个设置分区、${SETTING_FIELDS.length} 项偏好涵盖保存与打开行为、显示、搜索、快捷键、右键菜单和可选开始页。
+拖动分栏边缘调整宽高，尺寸保存在本机；打开标签可设置栖页内显示名，已保存标签与原生分组可重命名，长列表支持独立滚动。打开标签的自定义名称不修改网页或浏览器标签栏标题。提供中文和英文主要操作界面、浅色、深色和跟随系统外观。${SETTINGS_SECTIONS.length} 个设置分区、${SETTING_FIELDS.length} 项偏好涵盖保存与打开行为、显示、搜索、快捷键、右键菜单和可选开始页。
 
 默认本地使用，可选连接自己的同步服务
 核心功能无需栖页账号或订阅，默认在浏览器本机保存收藏与偏好。可自行连接 WebDAV 或 GitHub Secret Gist，同步已保存会话、暂存和部分偏好；配置前不会自动同步。仅在配置同步时申请对应站点访问。凭据用于所选服务的认证，不进入收藏导出或远端偏好正文。原生书签树的跨设备同步由浏览器自身管理。
@@ -77,11 +77,11 @@ Qiye is a free desktop browser extension for organizing tabs, native tab groups,
 
 ## Information used locally
 
-Qiye accesses tab titles, URLs, window and group identifiers, grouping information, and tab status to display and manage open pages. It accesses bookmark names, URLs, folder relationships, and identifiers to provide bookmark management. A local workspace cache may include bookmark information. Saved sessions, stashed links, favorites and locks, preferences and preference history, snapshots, items in the recycle bin, sync status, and links opened through Qiye are stored in the browser profile. If you enable startup restoration, Qiye stores a local snapshot of eligible previously open pages. Qiye does not use the browser history API to obtain a complete browsing history and does not inject scripts to read website content, form fields, or keystrokes on websites.
+Qiye accesses tab titles, URLs, window and group identifiers, grouping information, and tab status to display and manage open pages. It accesses bookmark names, URLs, folder relationships, and identifiers to provide bookmark management. A local workspace cache may include bookmark information. Saved sessions, stashed links, favorites and locks, preferences and preference history, device-local pane sizes and URL-based custom tab names, snapshots, items in the recycle bin, sync status, and links opened through Qiye are stored in the browser profile. If you enable startup restoration, Qiye stores a local snapshot of eligible previously open pages. Qiye does not use the browser history API to obtain a complete browsing history and does not inject scripts to read website content, form fields, or keystrokes on websites.
 
 ## Optional external connections
 
-Remote sync is disabled by default. If you choose and configure WebDAV or GitHub Gist, Qiye sends saved-session names, link titles and URLs, stashed links, associated identifiers and timestamps, and optionally portable preferences to the service you select. Native bookmark trees, recent-link records, recycle-bin records, and local snapshots are not part of the remote sync payload. Links you explicitly copy or import into saved sessions can be included as saved-session links. Connection settings and credentials are excluded from synced preference data.
+Remote sync is disabled by default. If you choose and configure WebDAV or GitHub Gist, Qiye sends saved-session names, link titles and URLs, stashed links, associated identifiers and timestamps, and optionally portable preferences to the service you select. Native bookmark trees, recent-link records, recycle-bin records, local snapshots, pane sizes, and the custom open-tab name map are not part of the remote sync payload. A display name copied into a saved session is included as that saved link’s title. Links you explicitly copy or import into saved sessions can be included as saved-session links. Connection settings and credentials are excluded from synced preference data.
 
 WebDAV credentials are sent to your configured server for authentication; a GitHub token is sent to GitHub's API for authentication. These credentials are not included in exported collections or remote collection JSON. A provider receives normal connection information such as your IP address and request metadata. GitHub connection tests can request your account information to validate authentication. Qiye does not send these collections to a developer-operated sync server.
 
@@ -116,11 +116,11 @@ Questions or data-handling requests: ${profile.supportEmail}.
 
 ## 在本机使用的信息
 
-为展示和管理打开的网页，扩展访问标签标题、网址、窗口和分组标识、分组信息及标签状态；为管理书签，访问书签名称、网址、文件夹层级和标识，并可能在本地工作台缓存中保留书签信息。已保存会话、暂存、星标和锁定状态、偏好及其历史、快照、回收站、同步状态和通过栖页打开的链接记录保存在浏览器用户资料中。启用启动恢复时，会在本机保存符合条件的上次打开页面。扩展不使用浏览器历史接口读取完整浏览历史，也不向网页注入脚本以读取网页正文、表单字段或用户在网页上的按键。
+为展示和管理打开的网页，扩展访问标签标题、网址、窗口和分组标识、分组信息及标签状态；为管理书签，访问书签名称、网址、文件夹层级和标识，并可能在本地工作台缓存中保留书签信息。已保存会话、暂存、星标和锁定状态、偏好及其历史、仅本机的分栏尺寸和按网址保存的自定义标签名、快照、回收站、同步状态和通过栖页打开的链接记录保存在浏览器用户资料中。启用启动恢复时，会在本机保存符合条件的上次打开页面。扩展不使用浏览器历史接口读取完整浏览历史，也不向网页注入脚本以读取网页正文、表单字段或用户在网页上的按键。
 
 ## 用户选择的外部连接
 
-默认关闭远端同步。只有选择并配置 WebDAV 或 GitHub Gist 后，才会将会话名称、链接标题与网址、暂存、相关标识与时间，以及可选的可迁移偏好发送到用户选择的服务。原生书签树、最近打开记录、回收站和本地快照不属于同步正文；用户主动复制或导入已保存会话的书签链接可作为会话链接参与同步。同步地址和凭据不进入远端偏好正文。
+默认关闭远端同步。只有选择并配置 WebDAV 或 GitHub Gist 后，才会将会话名称、链接标题与网址、暂存、相关标识与时间，以及可选的可迁移偏好发送到用户选择的服务。原生书签树、最近打开记录、回收站、本地快照、分栏尺寸和打开标签自定义名称表不属于同步正文；复制进会话的显示名作为已保存链接标题同步；用户主动复制或导入已保存会话的书签链接可作为会话链接参与同步。同步地址和凭据不进入远端偏好正文。
 
 WebDAV 账号与密码会用于向所配置服务器认证，GitHub Token 会用于向 GitHub API 认证。这些凭据不进入收藏导出或远端收藏 JSON。服务商会接收到 IP 地址、请求元数据等正常连接信息；GitHub 连接测试可能读取账户信息以核验认证。扩展不把这些收藏发送到开发者运营的同步服务器。
 

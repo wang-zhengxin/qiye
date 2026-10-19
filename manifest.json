@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "栖页 Qiye · 书签与标签工作台",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "minimum_chrome_version": "120",
   "description": "整理标签页、标签组与书签，支持休眠、暂存、拖动与本地备份。",
   "permissions": [

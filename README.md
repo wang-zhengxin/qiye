@@ -10,7 +10,7 @@
 
 栖页 Qiye 是一个本地优先的浏览器标签与书签工作台。在同一页面管理当前打开的标签、原生分组、已保存会话和浏览器书签，通过拖拽完成整理、暂存与收藏。
 
-当前版本 **v1.5.0** · Manifest V3 · 简体中文 / English · 无第三方运行依赖
+当前版本 **v1.5.1** · Manifest V3 · 简体中文 / English · 无第三方运行依赖
 
 [下载最新版](https://github.com/wang-zhengxin/qiye/releases/latest) · [功能介绍](#功能介绍) · [浏览器支持](#浏览器支持) · [安装与运行](#安装与运行) · [使用指南](#使用指南) · [常见问题](#常见问题)
 
@@ -31,8 +31,13 @@
 - **浏览器书签**：直接管理原生书签与文件夹，支持新增、编辑、嵌套文件夹、拖动移动和通过工作台删除后的恢复；内置、托管目录受到保护。
 - **休眠与暂存**：休眠后台标签以释放内存，保留标签栏入口；也可先把网址放入暂存区，稍后整理。
 - **搜索与备份**：搜索标签、会话、暂存和书签，导入导出收藏、创建工作台快照，并通过回收站恢复误删内容。
+- **分栏与自定义名称**：拖动导航栏、内容区和右侧卡片边缘调整宽高；尺寸在本机保留。打开标签可设置栖页内的显示名，保存的标签与原生分组也可重命名。长列表各自滚动，选择标签后保留滚动位置。
 - **可配置工作台**：9 个设置分区、77 项偏好，涵盖保存与打开行为、界面显示、标题整理、右键菜单、快捷面板、新标签页和搜索。
 - **可选远端同步**：连接自己的 WebDAV 或 GitHub Secret Gist，同步会话、暂存及可选偏好，支持手动同步和按时段自动同步。
+
+拖动分隔线即可调整布局，双击分隔线或按 Home 恢复该项默认尺寸，顶部“恢复默认分栏”可重置全部尺寸。聚焦分隔线后可用方向键微调，按住 Shift 可加大步幅。窄屏自动改用单列，宽度调整暂不显示。
+
+打开标签的“重命名标签”仅改变栖页显示，不修改网页或浏览器标签栏标题；同一完整网址共用名称，留空即可恢复网页原标题。此名称与分栏尺寸仅保存在当前浏览器本机，不随远端偏好同步。将标签保存为会话或书签时会保留当时的显示名。
 
 ### 这几类内容有什么区别？
 
@@ -144,9 +149,9 @@ npm run package
 安装包写入 `artifacts/`，文件名跟随项目版本：
 
 ```text
-qiye-workspace-chromium-v1.5.0.zip
-qiye-workspace-firefox-v1.5.0.zip
-qiye-workspace-safari-source-v1.5.0.zip
+qiye-workspace-chromium-v1.5.1.zip
+qiye-workspace-firefox-v1.5.1.zip
+qiye-workspace-safari-source-v1.5.1.zip
 ```
 
 Safari ZIP 是转换源包。更多单独构建命令见下方 [开发与验证](#开发与验证)。
@@ -249,7 +254,7 @@ npm run build
 | `npm run store:materials` | 从工程配置生成三家商店中英文文案、隐私政策、权限说明与支持文档 |
 | `npm run safari:project` | 使用完整 Xcode 生成 macOS Safari 应用工程 |
 
-当前 **110 项自动测试**覆盖数据移动、锁定保护、回收站恢复、导入校验、去重、多窗口、保存与关闭顺序、配置迁移、同步协议、Firefox 接口、缺少功能时的处理及发布版本与校验文件。
+当前 **118 项自动测试**覆盖数据移动、锁定保护、回收站恢复、导入校验、去重、多窗口、保存与关闭顺序、配置迁移、同步协议、Firefox 接口、缺少功能时的处理及发布版本与校验文件。
 
 界面已通过网页交互验收；真实浏览器扩展接口与同步协议使用模拟 API 测试。尚未逐个浏览器安装实测，也未使用用户的真实 WebDAV / Gist 服务完成端到端验证。
 
@@ -257,18 +262,18 @@ npm run build
 
 - 推送代码到 `main` 或创建 Pull Request 时，[Build and test](https://github.com/wang-zhengxin/qiye/actions/workflows/ci.yml) 会检查版本、运行测试、构建三个浏览器包，并校验 ZIP 与 SHA-256。构建下载保留 7 天，也可在 Actions 中手动运行。
 - 推送 `v*` 版本标签时，[Release](https://github.com/wang-zhengxin/qiye/actions/workflows/release.yml) 会执行同样的检查，在附件上传完整后发布 GitHub Release。无需添加个人 Token，使用仓库自带的 `GITHUB_TOKEN`。
-- 标签必须与 `package.json`、`manifest.json` 的版本完全一致，例如两处版本为 `1.5.1` 时使用 `v1.5.1`。检查失败时不会公开 Release，已发布版本不会被流程覆盖。
+- 标签必须与 `package.json`、`manifest.json` 的版本完全一致，例如两处版本为 `1.5.2` 时使用 `v1.5.2`。检查失败时不会公开 Release，已发布版本不会被流程覆盖。
 
-发布下一个版本时，先修改这两处版本、更新 README 版本示例，并按需新增 `docs/releases/v1.5.1.md` 发布说明。提交并推送代码后执行：
+发布下一个版本时，先修改这两处版本、更新 README 版本示例，并按需新增 `docs/releases/v1.5.2.md` 发布说明。提交并推送代码后执行：
 
 ```bash
 npm test
-npm run release:build -- --tag=v1.5.1
-git tag v1.5.1
-git push origin v1.5.1
+npm run release:build -- --tag=v1.5.2
+git tag v1.5.2
+git push origin v1.5.2
 ```
 
-上述 `1.5.1` 为下个版本示例。正式下载位于 Releases；Actions 中的构建附件用于验证。此流程生成扩展 ZIP，不负责浏览器商店提交、Firefox 签名或 Safari 应用签名。
+上述 `1.5.2` 为下个版本示例。正式下载位于 Releases；Actions 中的构建附件用于验证。此流程生成扩展 ZIP，不负责浏览器商店提交、Firefox 签名或 Safari 应用签名。
 
 ### 项目结构
 

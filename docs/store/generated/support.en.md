@@ -1,6 +1,6 @@
 # Qiye Support
 
-Free desktop tab and bookmark workspace · Version 1.5.0
+Free desktop tab and bookmark workspace · Version 1.5.1
 
 Contact: wangzhengxin007@gmail.com
 

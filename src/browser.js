@@ -4,6 +4,7 @@ import {flattenBookmarkTree,folderIds,folderSnapshot,validateFolderMove,retireCa
 import {safeUrl} from './model.js';
 import {ensureStorageMigration} from './storage.js';
 import {upgradeDemoWindows} from './data.js';
+import {applyTabTitles,readTabTitles,TAB_TITLES_KEY} from './tab-titles.js';
 export const extension = Boolean(api?.runtime?.id && api?.tabs);
 export async function readState(fallback) {
   await ensureStorageMigration();
@@ -26,11 +27,12 @@ export async function writeState(state) {
 export class BrowserAdapter {
   constructor(state){this.state=state;this.currentWindowId=1;this.capabilities=extension?detectCapabilities(api):DEMO_CAPABILITIES;if(!extension&&state.demoTabs)upgradeDemoWindows(state);}
   async listTabs(all=false){
-    if(!extension) return {tabs:this.state.demoTabs.filter(t=>all||t.windowId===this.currentWindowId),groups:this.state.demoNativeGroups.filter(g=>all||g.windowId===this.currentWindowId),windows:this.state.demoWindows.filter(w=>all||w.id===this.currentWindowId)};
+    const titles=await readTabTitles();
+    if(!extension) return {tabs:applyTabTitles(this.state.demoTabs.filter(t=>all||t.windowId===this.currentWindowId),titles),groups:this.state.demoNativeGroups.filter(g=>all||g.windowId===this.currentWindowId),windows:this.state.demoWindows.filter(w=>all||w.id===this.currentWindowId)};
     this.currentWindowId=(await api.windows.getCurrent()).id;
     const [queried,groups,windows]=await Promise.all([api.tabs.query(all?{}:{windowId:this.currentWindowId}),this.capabilities.nativeGroups?api.tabGroups.query(all?{}:{windowId:this.currentWindowId}):[],api.windows.getAll?api.windows.getAll({}):Promise.resolve([])]);
     const tabs=queried.filter(t=>Number.isInteger(t.id)&&t.id>=0&&!(t.url||t.pendingUrl)?.startsWith(api.runtime.getURL(''))).map(t=>({...t,groupId:this.capabilities.nativeGroups?(t.groupId??-1):-1}));
-    return {tabs,groups,windows:windows.filter(w=>all||w.id===this.currentWindowId)};
+    return {tabs:applyTabTitles(tabs,titles),groups,windows:windows.filter(w=>all||w.id===this.currentWindowId)};
   }
   async listBookmarks(){
     if(!extension){
@@ -85,6 +87,12 @@ export class BrowserAdapter {
     const windowId=groupId===undefined?tabs[0].windowId:this.state.demoNativeGroups.find(g=>g.id===groupId)?.windowId||1;
     if(groupId===undefined) this.state.demoNativeGroups.push({id,title,color:'orange',windowId});
     tabs.forEach(t=>{t.groupId=id;t.windowId=windowId;});return id;
+  }
+  async renameNativeGroup(id,title){
+    if(!this.capabilities.nativeGroups)throw new Error('此浏览器暂不支持原生分组管理');
+    title=String(title).trim();if(!title)throw new Error('名称不能为空');
+    if(extension)return api.tabGroups.update(id,{title});
+    const group=this.state.demoNativeGroups.find(group=>group.id===id);if(!group)throw new Error('浏览器标签组已关闭');group.title=title;
   }
   async ungroup(tabs){
     if(!this.capabilities.nativeGroups)throw new Error('此浏览器暂不支持原生分组管理');
@@ -152,6 +160,7 @@ export class BrowserAdapter {
   listen(callback){
     if(!extension) return;
     let timer;const schedule=()=>{clearTimeout(timer);timer=setTimeout(callback,160);};
+    api.storage.onChanged?.addListener((changes,area)=>{if(area==='local'&&changes[TAB_TITLES_KEY])schedule();});
     for(const event of [api.tabs.onCreated,api.tabs.onRemoved,api.tabs.onUpdated,api.tabs.onMoved,api.tabs.onAttached,api.tabs.onDetached,api.tabs.onActivated,api.tabGroups?.onCreated,api.tabGroups?.onUpdated,api.tabGroups?.onRemoved,api.tabGroups?.onMoved,api.windows.onCreated,api.windows.onRemoved,api.windows.onFocusChanged,api.bookmarks?.onCreated,api.bookmarks?.onRemoved,api.bookmarks?.onChanged,api.bookmarks?.onMoved])event?.addListener(schedule);
   }
 }

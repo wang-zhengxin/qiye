@@ -21,7 +21,7 @@ FIND AND RECOVER
 Search tabs and saved links, set items aside in a stash, create local snapshots, import and export collections, and recover items deleted through Qiye from its recycle bin.
 
 MAKE THE WORKSPACE YOURS
-Choose light, dark, or system appearance and use Chinese or English controls. 77 preferences across 9 sections cover saving, opening, display, search, shortcuts, context menus, and an optional start page.
+Drag pane separators to resize the workspace; sizes stay on this device. Give open tabs custom Qiye display names, rename saved tabs and native groups, and scroll long lists independently. Open-tab names do not modify website or browser tab-strip titles. Choose light, dark, or system appearance and use Chinese or English controls. 77 preferences across 9 sections cover saving, opening, display, search, shortcuts, context menus, and an optional start page.
 
 LOCAL BY DEFAULT, OPTIONAL SYNC
 Core features work without a Qiye account or subscription. Collections and preferences stay in browser-local storage by default. You may connect your own WebDAV service or GitHub Secret Gist to sync saved sessions, stashed links, and selected preferences. Sync is off until configured. Network access is requested when you configure the service. Credentials are used to authenticate to your selected provider and are excluded from collection exports and synced preference data. Native bookmark-tree sync remains the browser's responsibility.
@@ -29,7 +29,7 @@ Core features work without a Qiye account or subscription. Collections and prefe
 PLEASE NOTE
 This listing is for desktop Microsoft Edge. Native groups and sleeping depend on browser support. Saved but closed toolbar groups cannot be fully read; open a group first to manage it. Closed-tab history and a complete browsing history are not collected. Recently opened only records links opened through Qiye. A Secret Gist is unlisted, not end-to-end encrypted. Backups contain readable URLs and titles, so store them carefully. External sync services have their own terms and may charge for their service.
 
-Version 1.5.0. Support: wangzhengxin007@gmail.com
+Version 1.5.1. Support: wangzhengxin007@gmail.com
 
 Category suggestion: Productivity
 
