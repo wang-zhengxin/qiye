@@ -18,7 +18,7 @@
 
 ## 公开文档地址
 
-以下为本次准备发布至既有 GitHub 项目的文档位置；最终是否已发布，以提交后的远端核验记录为准。
+以下文件已随提交 d43ee337acac108cd627e4285710b5486c38dc67 发布至既有公开 GitHub 项目。六份中英文政策与支持文件均通过无登录凭据的公开 API 读取检查，内容摘要与本地一致。
 
 - 通用中文隐私政策：https://github.com/wang-zhengxin/qiye/blob/main/docs/store/generated/privacy.zh-CN.md
 - 通用英文隐私政策：https://github.com/wang-zhengxin/qiye/blob/main/docs/store/generated/privacy.en.md
@@ -27,6 +27,14 @@
 - 支持说明：https://github.com/wang-zhengxin/qiye/blob/main/docs/store/generated/support.zh-CN.md
 
 材料预览 HTML 是可离线浏览的文档总览，并未部署为独立产品网站。GitHub 文档链接可用于读取政策；最终仍需通过目标商店的 URL 检查。
+
+GitHub [Build and test #39227946431](https://github.com/wang-zhengxin/qiye/actions/runs/39227946431) 已成功完成，生成扩展包附件和独立商店文本附件。
+
+## 材料包独立核验
+
+- 四种尺寸图标、两种尺寸的中英文 RGB 宣传图和十张截图均通过尺寸与摘要校验。
+- 材料 ZIP 的 CRC、文件路径、MIT 许可证与 SHA256SUMS 清单通过检查；不包含私人 Edge 登录邮箱、账号密码或真实 Token。
+- 审核源码 ZIP 在独立临时目录中解压后，分别重建 Firefox 与 Chromium 包；生成结果与材料包内对应扩展 ZIP 的 SHA-256 完全一致。
 
 ## 尚未完成的工程与平台验收
 
