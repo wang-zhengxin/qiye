@@ -18,7 +18,7 @@
 - [ ] 各目标浏览器真实安装、升级与同步验收：尚未全部完成。
 - [ ] Firefox 正式签名、Safari App Store 可分发构建：尚未完成。
 
-v1.5.2 已由 GitHub 流程公开发布。Chrome、Edge、Firefox 均尚未提交审核，实时记录见 docs/store/publication.json；尚未配置自动向商店提交的凭据。
+v1.5.2 已由 GitHub 流程公开发布。Firefox v1.5.2 已提交并显示等待审核；Edge v1.5.2 已提交并显示正在审阅；Chrome 尚未提交审核，实时记录见 docs/store/publication.json；尚未配置自动向商店提交的凭据。
 
 ## 1. 你需要提供或确认
 
@@ -31,7 +31,7 @@ v1.5.2 已由 GitHub 流程公开发布。Chrome、Edge、Firefox 均尚未提�
 - [x] 登录账号已准备，Firefox 使用与 Chrome 相同的 Google 账号；Chrome Web Store 发布资格尚待单独注册。
 - [x] Chrome 账号认证通过（用户确认）。
 - [ ] 提交前检查三个后台是否仍有发布设置、双重验证、付款或额外身份核验提示；不把账号注册等同于所有发布设置均已完成。
-- [x] 政策使用“栖页 Qiye 个人开发者”作为事实性运营者称呼，生效日期 2026-10-19，联系邮箱 wangzhengxin007@gmail.com。
+- [x] 政策使用“栖页 Qiye 个人开发者”作为事实性运营者称呼，生效日期 2026-10-20，联系邮箱 wangzhengxin007@gmail.com。
 - [x] 用户确认代码与素材有发布授权；已有来源说明保留。
 - [x] 用户选择 MIT 开源许可；已加入 LICENSE，并随构建与材料包分发。
 
@@ -111,7 +111,8 @@ Safari 可选用 Apple 的 [App Store Connect 云端打包](https://developer.ap
 - [ ] 单独提供开发者 ZIP、版本号、校验文件、更新记录及安装教程。Chromium ZIP 先解压加载，不能描述为普通用户点击 ZIP 即安装。
 - [ ] Firefox 面向普通用户的直接下载使用已签名 XPI；当前 Release 中未签名 ZIP 继续标记为测试用途。参考：[Firefox 自分发](https://extensionworkshop.com/documentation/publish/self-distribution/)。
 - [ ] 提供隐私政策、支持邮箱或问题反馈入口。
-- [ ] 上线后记录各商店扩展 ID、页面地址、账号归属及审核通知渠道。
+- [x] 已记录 Firefox UUID、版本 ID、产品地址，以及 Edge 产品 ID、Store ID 和 CRX ID，见 docs/store/publication.json。
+- [ ] 审核通过后核实商店公开可安装状态、签名下载及审核通知渠道。
 - [ ] 首版建议手动提交，待账号和扩展 ID 稳定后，再决定是否给 GitHub 工作流增加商店上传能力。自动上传不等于免审核，也不等于自动公开发布。
 
 建议先准备 Chrome、Edge 和 Firefox，Opera 作为补充，Safari 在打包及实测完成后单独发布。这是结合当前项目状态的实施顺序建议，并非平台要求。

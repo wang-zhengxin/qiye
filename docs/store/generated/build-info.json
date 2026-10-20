@@ -20,6 +20,6 @@
   "storeUrls": {
     "chrome": null,
     "edge": null,
-    "firefox": null
+    "firefox": "https://addons.mozilla.org/zh-CN/firefox/addon/qiye-workspace/"
   }
 }

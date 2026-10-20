@@ -11,6 +11,10 @@
   "publisherDisplayNameSource": "existing-store-account-profile",
   "license": "MIT",
   "rightsConfirmed": true,
-  "storeUrls": {"chrome": null, "edge": null, "firefox": null},
+  "storeUrls": {
+    "chrome": null,
+    "edge": null,
+    "firefox": "https://addons.mozilla.org/zh-CN/firefox/addon/qiye-workspace/"
+  },
   "privacyPolicyUrl": "https://github.com/wang-zhengxin/qiye/blob/main/docs/store/generated/privacy.en.md"
 }

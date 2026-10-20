@@ -43,7 +43,7 @@ GitHub [Build and test #39227946431](https://github.com/wang-zhengxin/qiye/actio
 1. 已完成 HTTPS 限制：移除 HTTP 可选访问范围，新配置和旧配置均在请求边界检查，HTTP 不会发出请求或凭据。本机 HTTPS 集成测试和回归测试完成；真实用户所选服务仍需各自验证。
 2. 用户已明确同意补齐 Firefox 可选声明 browsingActivity / authenticationInfo / bookmarksInfo / technicalAndInteraction / searchTerms。同步按功能请求，关闭偏好同步时不请求设置数据，搜索词单独授权。拒绝/撤销回归已验证；AMO 正式审核及签名仍待平台完成。
 3. 需要在实际目标浏览器中完成原生分组、休眠、书签、权限撤销和升级迁移的安装验收，以及真实 WebDAV / Gist 测试。演示截图不能替代它们。
-4. Firefox 正式签名与商店审核尚未执行；商店 ID、商店页面和最终审核结果由平台返回后自动补入 profile.json，当前不编造。
+4. Firefox v1.5.2 已提交，后台显示等待审核；平台版本 ID 为 6599511，扩展 UUID 为 qiye-workspace@qiye.local。正式上架、签名文件及审核结果尚待平台完成，不能把提交回执视为发布成功。
 5. 商店后台如果要求实名、地址、付款或验证码，只能由账号本人在后台完成；无需把这些私人信息写进项目。此前账号注册和 Chrome 认证状态采用用户确认信息。
 
 ## 材料包与版本关系
@@ -73,12 +73,12 @@ GitHub [Build and test #39227946431](https://github.com/wang-zhengxin/qiye/actio
 
 - GitHub v1.5.2 已公开发布，发布流程 [39379111653](https://github.com/wang-zhengxin/qiye/actions/runs/39379111653) 成功；Chromium、Firefox、Safari 转换源和 SHA256SUMS 均已上传。
 - 本次公开政策和支持文件以匿名请求读取，六份文件均可访问且内容与本地一致。
-- Chrome、Edge、Firefox 商店均尚未提交，也没有编造扩展 ID 或商店页面。已打开三个官方开发者后台；Chrome 已完成 Google 登录，但当前账号仍停在 Chrome Web Store 开发者注册页，需接受协议及单独支付一次性 5 美元注册费。原生浏览器控制已可用。
+- Firefox 已返回“提交完成”回执，后台显示等待审核；上传的 v1.5.2 包通过平台校验（0 错误、23 警告），并附上可复现审核源码。Edge 同样已提交并显示正在审阅。Chrome 尚未提交，当前账号仍停在开发者注册页，需本人接受协议及单独支付一次性 5 美元注册费。
 - 可机读状态见 publication.json。GitHub 发布不等于商店审核通过；Firefox ZIP 仍是未签名提交/临时测试包。
 
 ## 后台实测进度（2026-10-20）
 
 - Chrome：当前 Google 账号显示开发者协议及一次性 USD 5 注册费，尚不能上传扩展。Google Play 的 USD 25 注册属于另一计划，不能据此判断 Chrome Web Store 已注册。协议和付款留给用户本人完成。
-- Firefox：开发者中心已有登录态，首次提交入口会转到 Mozilla 账号增强验证（Client Challenge）；尚未上传文件或接受首次发布协议，等待本人验证。
-- Edge：使用微软发布文档中的 Partner Center 官方入口进入扩展 overview；页面没有呈现上传表单，已尝试刷新，尚未创建扩展条目。
-- 本次没有付款、没有代替用户接受开发者协议，也没有提交任何商店审核。材料和 GitHub 下载保持可用。
+- Firefox：用户已完成 Mozilla 账号增强验证并亲自接受分发协议；已上传 Firefox 专用 ZIP、源码包，填写中文介绍、隐私政策及不超过 3000 字符的审核说明，完成正式提交。平台版本 ID 6599511，状态为等待审核。已保存中英文标题、简介、详细说明、支持资料，以及五张功能截图和中英文截图说明。商店地址：https://addons.mozilla.org/zh-CN/firefox/addon/qiye-workspace/ （审核期间不代表已公开可安装）。
+- Edge：后台已恢复，已创建条目 d27d4562-64da-40ac-8668-1f900f9f64ff；Chromium v1.5.2 ZIP 已通过平台校验，公开分发范围和属性已保存。已完成英文商店介绍、300 像素图标、两种宣传图、五张英文功能截图与审核说明，并正式提交。后台显示“正在审阅”，Store ID 为 0RDCKF696RDW，CRX ID 为 kjlojmbanabhflfccnhdbpgdghbgbidj；公开 URL 需发布后由平台提供。当前包只提供 en-US 商店入口，扩展内仍有中英文界面。隐私披露选中认证信息、Web 历史记录及网站内容，分别覆盖可选服务凭据、保存的网址/标题，以及用户保存的链接等内容；没有声称读取完整浏览历史或网页正文。
+- 本次没有付款，也没有代替用户接受开发者协议。Firefox、Edge 提交已完成；Chrome 仍待本人完成注册。此前发布的 GitHub Release 包保持不变；main 中审核说明版本号已更正为 1.5.2。

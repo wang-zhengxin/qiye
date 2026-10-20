@@ -1,6 +1,6 @@
 # Qiye Reviewer Instructions
 
-Version 1.5.0 · Free · Desktop browsers · No Qiye account required
+Version 1.5.2 · Free · Desktop browsers · No Qiye account required
 
 Contact: wangzhengxin007@gmail.com
 
@@ -49,4 +49,4 @@ Use Node.js 20.11+; Node.js 24 matches CI. No npm install is required.
 node scripts/package.mjs --target=firefox
 ```
 
-The output is artifacts/qiye-workspace-firefox-v1.5.0.zip and the unpacked directory is dist-firefox/. The build copies local files, emits a browser-specific manifest, and compresses the package. It does not obfuscate executable code or fetch remote code.
+The output is artifacts/qiye-workspace-firefox-v1.5.2.zip and the unpacked directory is dist-firefox/. The build copies local files, emits a browser-specific manifest, and compresses the package. It does not obfuscate executable code or fetch remote code.

@@ -1,6 +1,6 @@
 # 栖页 Qiye 审核操作说明
 
-版本：1.5.0 · 免费 · 桌面浏览器 · 无栖页账号登录要求
+版本：1.5.2 · 免费 · 桌面浏览器 · 无栖页账号登录要求
 
 支持邮箱：wangzhengxin007@gmail.com
 
@@ -51,4 +51,4 @@ Chromium 包用于 Chrome / Edge；Firefox 必须使用独立 Firefox 包。包�
 node scripts/package.mjs --target=firefox
 ```
 
-输出为 artifacts/qiye-workspace-firefox-v1.5.0.zip，根目录含 manifest.json；dist-firefox/ 为对应解压目录。构建过程只复制本地文件、生成目标清单并压缩，没有代码混淆或远程代码下载。
+输出为 artifacts/qiye-workspace-firefox-v1.5.2.zip，根目录含 manifest.json；dist-firefox/ 为对应解压目录。构建过程只复制本地文件、生成目标清单并压缩，没有代码混淆或远程代码下载。

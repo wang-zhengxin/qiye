@@ -18,18 +18,43 @@
       "stage": "developer_registration_required"
     },
     "edge": {
-      "status": "not_submitted",
-      "itemId": null,
+      "status": "submitted",
+      "itemId": "d27d4562-64da-40ac-8668-1f900f9f64ff",
       "listingUrl": null,
-      "blocker": "Official Microsoft Edge extension overview reached, but the page did not render an upload form; refresh and the documented login entry were attempted.",
-      "stage": "dashboard_loading_blocked"
+      "blocker": null,
+      "stage": "in_review",
+      "dashboardUrl": "https://partner.microsoft.com/zh-cn/dashboard/microsoftedge/d27d4562-64da-40ac-8668-1f900f9f64ff/packages/dashboard",
+      "package": "qiye-workspace-chromium-v1.5.2.zip",
+      "packageValidated": true,
+      "storeId": "0RDCKF696RDW",
+      "extensionId": "kjlojmbanabhflfccnhdbpgdghbgbidj",
+      "listingLanguages": [
+        "en-US"
+      ],
+      "screenshots": 5,
+      "reviewEstimate": "Dashboard currently estimates feedback after 7 business days; this is not a guaranteed publication date."
     },
     "firefox": {
-      "status": "not_submitted",
-      "itemId": null,
-      "listingUrl": null,
-      "blocker": "Signed in to Developer Hub; opening first add-on submission redirects to Mozilla account step-up authentication (Client Challenge). User verification is required.",
-      "stage": "account_verification_required"
+      "status": "submitted",
+      "itemId": "qiye-workspace@qiye.local",
+      "listingUrl": "https://addons.mozilla.org/zh-CN/firefox/addon/qiye-workspace/",
+      "blocker": null,
+      "stage": "awaiting_review",
+      "validation": {
+        "errors": 0,
+        "warnings": 23
+      },
+      "package": "qiye-workspace-firefox-v1.5.2.zip",
+      "sourcePackage": "qiye-review-source-v1.5.2.zip",
+      "versionId": 6599511,
+      "slug": "qiye-workspace",
+      "dashboardUrl": "https://addons.mozilla.org/zh-CN/developers/addon/qiye-workspace/edit",
+      "listingLanguages": [
+        "zh-CN",
+        "en-US"
+      ],
+      "screenshots": 5,
+      "signedDownloadAvailable": false
     }
   },
   "checks": {
@@ -44,5 +69,5 @@
     "scopedFirefoxConsent": true,
     "publicPoliciesVerified": true
   },
-  "notes": "GitHub publication is complete. All browser stores remain unsubmitted. Native browser control is available; account registration, verification and Edge page loading now block submission."
+  "notes": "GitHub v1.5.2 is published. Firefox is submitted and awaiting review; Edge is submitted and under review. Store availability/signing are not yet confirmed. Chrome requires separate developer registration and its one-time USD 5 fee. Published release assets are unchanged."
 }
