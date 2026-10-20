@@ -182,7 +182,7 @@ async function saveSettings(){
   const next=validateSettings(settingsDraft);
   if(extension&&next.syncProvider!=='none'){
     const origins=next.syncProvider==='gist'?['https://api.github.com/*']:next.webdavUrl?[new URL(next.webdavUrl).origin+'/*']:[];
-    if(origins.length&&!await api.permissions.request(syncPermissionRequest(origins)))throw new Error('未授权访问同步地址，配置尚未保存');
+    if(origins.length&&!await api.permissions.request(syncPermissionRequest(origins,api,next)))throw new Error('未授权访问同步地址，配置尚未保存');
   }
   state.settingsHistory=[{at:new Date().toISOString(),preferences:structuredClone(state.settings)},...(state.settingsHistory||[])].slice(0,10);
   const before=state.settings;state.settings=next;

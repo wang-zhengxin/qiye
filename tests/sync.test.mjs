@@ -16,3 +16,9 @@ test('missing pull target never replaces local collections',async()=>{const s=st
 test('testing a connection never writes collection data',async()=>{const s=state(),methods=[];await runSync(s,{test:true,fetcher:async(url,o)=>{methods.push(o.method||'GET');return response({},404);}});assert.deepEqual(methods,['GET']);});
 test('GitHub creates an unlisted gist and stores the returned ID',async()=>{const s=state();s.settings.syncProvider='gist';let body;await runSync(s,{credentials:{token:'not-real-token'},fetcher:async(url,o)=>{body=JSON.parse(o.body);return response({id:'abc123'},201);}});assert.equal(body.public,false);assert.equal(s.settings.gistId,'abc123');assert.ok(body.files['qiye-workspace.json']);});
 test('GitHub rejects inaccessible and public collection gists',async()=>{const s=state();s.settings.syncProvider='gist';s.settings.gistId='abc123';await assert.rejects(()=>runSync(s,{credentials:{token:'test'},fetcher:async()=>response({},404)}),/不存在/);await assert.rejects(()=>runSync(s,{credentials:{token:'test'},fetcher:async()=>response({public:true,files:{}})}),/公开/);});
+
+test('old HTTP settings never send a request or credentials and preserve the local collection',async()=>{
+ for(const test of [true,false]){const s=state();s.settings.webdavUrl='http://example.com/qiye.json';const before=JSON.stringify(s);let requests=0;
+ await assert.rejects(()=>runSync(s,{test,credentials:{username:'test',password:'private',webdavOrigin:'http://example.com'},fetcher:async()=>{requests++;return response({});}}),/HTTPS/);
+ assert.equal(requests,0);assert.equal(JSON.stringify(s),before);}
+});

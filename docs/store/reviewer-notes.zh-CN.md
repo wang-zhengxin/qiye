@@ -40,7 +40,7 @@ Chromium 包用于 Chrome / Edge；Firefox 必须使用独立 Firefox 包。包�
 - 权限逐项说明见 generated/permissions.md；当前清单无 history、scripting 或内容脚本。
 - 不从远端加载执行代码；同步解析校验后的 JSON。依赖仅为浏览器接口与打包时的 Node.js 内置模块，扩展没有第三方运行依赖。
 - 默认数据在浏览器本机；可选同步会传输会话标题、网址等及认证所需凭据。原生书签树不进入远端同步正文。
-- 当前版本仍接受 HTTP WebDAV，未实现端到端加密或应用级凭据加密。隐私政策披露这些事实；正式提交前的 HTTPS 处理属于待完成工程验收，不能把本文件当作安全审核通过证明。
+- 当前版本仅接受 HTTPS WebDAV；旧 HTTP 配置也会在发出请求及凭据前被拒绝，不跟随重定向。未实现端到端加密或应用级凭据加密。Firefox 同步按实际功能请求相关数据声明，偏好同步关闭时不请求 technicalAndInteraction；可选开始页提交搜索时单独请求 searchTerms，拒绝后不跳转。AMO 校验和签名以平台最终结果为准。
 - 支持范围见 BROWSERS.md；Firefox 的内置数据传输分类和可选开始页搜索仍需结合 AMO 实际校验核对。
 
 ## 从源码重现 Firefox 包

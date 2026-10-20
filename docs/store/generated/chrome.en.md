@@ -29,7 +29,7 @@ Core features work without a Qiye account or subscription. Collections and prefe
 PLEASE NOTE
 This listing is for desktop Google Chrome. Native groups and sleeping depend on browser support. Saved but closed toolbar groups cannot be fully read; open a group first to manage it. Closed-tab history and a complete browsing history are not collected. Recently opened only records links opened through Qiye. A Secret Gist is unlisted, not end-to-end encrypted. Backups contain readable URLs and titles, so store them carefully. External sync services have their own terms and may charge for their service.
 
-Version 1.5.1. Support: wangzhengxin007@gmail.com
+Version 1.5.2. Support: wangzhengxin007@gmail.com
 
 Category suggestion: Productivity
 

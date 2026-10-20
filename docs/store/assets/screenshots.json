@@ -1,10 +1,13 @@
 {
-  "browser": "155.0.8059.84",
+  "browser": "155.0.8059.85",
   "sampleData": true,
   "credentialsUsed": false,
   "sources": {
-    "src/app.js": "dbebe984bb22d5c07d063fa38653bb9e9ace60dfd0f6785753ceeda602be7e47",
-    "src/settings-view.js": "4ad7decb823876898040e14fd7a0f33f4cd143d13f5e47b251b508b93004766a",
+    "src/app.js": "c300374cd60d379125e38eb28338119fd7b890e9455c9250b0d5390d641d7000",
+    "src/settings-view.js": "126f44414991d93beb6fd2a815c3f57509b7af5c7cbf62f0fd8c61f0c1fc9049",
+    "src/settings.js": "55bf4499c9322ee84d443d3827de08901c2873414ffac303c1981d8401f067b2",
+    "src/platform.js": "af01a04c38cfab334f2c6ad64c8257ea484e4607c82b33b77acccf14b6ca8a10",
+    "src/network-policy.js": "85a1ede3af4ef34a9fae0e5ab65d81b34a2516762811f050290ae24929349cde",
     "styles.css": "e9b5d1b215f66eb055012a5789a450a1ddf7d01bdcbd7fce0212bfb04406dd95",
     "settings.css": "3c212c879d5c72f1f9daadacc5ba36ac2b0eb2dc21eeb709f14fb061a10b666e",
     "panes.css": "b4442cd1c9be84f4dd49646656dbe55c2ea5239cd59c5f04cb96d0c1908df7bc",
@@ -56,7 +59,7 @@
       "locale": "zh-CN",
       "route": "?view=settings&section=sync",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "1606eeb1b69770a4f5f2164a6b88d7b87f964ab39ab4f1ac7c14e65d1139035c"
+      "sha256": "d873ae5845f3af402b578db8463f779dc630109ac205ed6f9d5f46a2bf9aaafa"
     },
     {
       "file": "en/01-tabs.png",
@@ -101,7 +104,7 @@
       "locale": "en",
       "route": "?view=settings&section=sync",
       "mode": "actual application rendered with isolated sample data; not a native extension installation test",
-      "sha256": "fea43be05ee5fcfae9e1925f59a04b764c3d564618e361d31352d7f959f90f75"
+      "sha256": "3d5b090224635ffd92e5e2c99979320b197bf66342520668a22a8550a4e3e1f6"
     }
   ]
 }

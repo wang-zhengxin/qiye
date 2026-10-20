@@ -10,7 +10,7 @@ export function manifestFor(source,target){
     delete manifest.minimum_chrome_version;
     manifest.background={scripts:['background.js'],type:'module'};
   }
-  if(target==='firefox')manifest.browser_specific_settings={gecko:{id:'qiye-workspace@qiye.local',strict_min_version:'140.0',data_collection_permissions:{required:['none'],optional:['browsingActivity','authenticationInfo']}}};
+  if(target==='firefox')manifest.browser_specific_settings={gecko:{id:'qiye-workspace@qiye.local',strict_min_version:'140.0',data_collection_permissions:{required:['none'],optional:['browsingActivity','authenticationInfo','bookmarksInfo','technicalAndInteraction','searchTerms']}}};
   if(target==='safari')manifest.permissions=manifest.permissions.filter(p=>!['bookmarks','tabGroups'].includes(p));
   return manifest;
 }

@@ -11,15 +11,20 @@ export function detectCapabilities(api){
   };
 }
 export const DEMO_CAPABILITIES=Object.freeze({nativeGroups:true,bookmarks:true,sleep:true});
-export function syncPermissionRequest(origins,webext=api){
-  const request={origins};
-  const data=webext?.runtime?.getManifest?.().browser_specific_settings?.gecko?.data_collection_permissions?.optional;
-  if(data?.length)request.data_collection=[...data];
+function declaredDataTypes(webext){return webext?.runtime?.getManifest?.().browser_specific_settings?.gecko?.data_collection_permissions?.optional||[];}
+export function syncPermissionRequest(origins,webext=api,settings={syncPreferences:true}){
+  const request={origins},declared=declaredDataTypes(webext);
+  const types=['browsingActivity','authenticationInfo','bookmarksInfo',...(settings.syncPreferences?['technicalAndInteraction']:[])].filter(type=>declared.includes(type));
+  if(types.length)request.data_collection=types;
   return request;
 }
-export async function requireSyncConsent(webext=api){
-  const request=syncPermissionRequest([],webext);
+export async function requireSyncConsent(webext=api,settings={syncPreferences:true}){
+  const request=syncPermissionRequest([],webext,settings);
   if(request.data_collection&&!await webext.permissions.contains({data_collection:request.data_collection}))throw new Error('请先在设置中保存同步配置并授权数据传输；本地收藏保持不变');
+}
+// Called directly from the search submit gesture, independently of sync permissions.
+export function requestSearchConsent(webext=api){
+  return declaredDataTypes(webext).includes('searchTerms')?webext.permissions.request({data_collection:['searchTerms']}):Promise.resolve(true);
 }
 export function isNewTabUrl(url){
   return ['chrome://newtab/','chrome://new-tab-page/','edge://newtab/','brave://newtab/','opera://startpage/','vivaldi://newtab/','about:newtab','about:home','favorites://'].includes(url);

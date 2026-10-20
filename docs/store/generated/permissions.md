@@ -1,6 +1,6 @@
 # 权限与商店隐私字段 / Permissions and privacy fields
 
-版本 1.5.1。从扩展清单与实现生成；提交时核对平台字段定义。
+版本 1.5.2。从扩展清单与实现生成；提交时核对平台字段定义。
 
 ## 单一用途 / Single purpose
 
@@ -21,11 +21,11 @@ Organize browser tabs, saved sessions and bookmarks in one local-first workspace
 
 ## 可选站点权限 / Optional host access
 
-`https://*/*`, `http://*/*`
+`https://*/*`
 
-用户可以配置任意 WebDAV 服务，因此清单预留 HTTP(S) 可选权限。实际在保存同步配置时，仅请求所选服务的 origin；GitHub Gist 仅请求 https://api.github.com/*。这些权限用于同步数据和认证，不用于注入脚本、读取网页正文、广告或跟踪。当前 HTTP 支持需要在商店正式发布前完成安全处理；不要把它描述成全程加密。
+用户可以配置自己的 HTTPS WebDAV 服务，因此清单预留 HTTPS 可选权限。实际在保存同步配置时，仅请求所选服务的 origin；GitHub Gist 仅请求 https://api.github.com/*。这些权限用于同步数据和认证，不用于注入脚本、读取网页正文、广告或跟踪。HTTP 地址在配置及发出请求时均被拒绝；HTTPS 不等于端到端加密。
 
-Users may configure their own WebDAV server, so optional host patterns allow user-selected HTTP(S) origins. Only the selected service origin is requested when sync is configured; Gist requests https://api.github.com/*. Access is used for sync and authentication, not content-script injection, page-content reading, advertising or tracking. Review HTTP support before store publication; do not claim all connections are encrypted.
+Users may configure their own HTTPS WebDAV server, so optional host patterns allow user-selected HTTPS origins. Only the selected service origin is requested when sync is configured; Gist requests https://api.github.com/*. Access is used for sync and authentication, not content-script injection, page-content reading, advertising or tracking. HTTP endpoints are rejected at configuration and request time. HTTPS transport does not provide end-to-end encryption.
 
 ## 远程代码 / Remote code
 
@@ -42,6 +42,6 @@ No remotely hosted executable code. Scripts and styles are packaged with the ext
 - 不读取完整浏览历史、网页正文或网页表单；不包含广告、分析 SDK 或第三方站点图标网络请求。
 - 可声明无出售数据、无定向广告、无贷款或信用资格判断用途；不能填写“没有处理或传输任何数据”。
 
-Firefox 当前生成清单声明 required: none，optional: browsingActivity, authenticationInfo。这不是签名或审核通过证明。内置搜索及同步偏好对应的数据分类需在 AMO 校验时一并核对；待核对项属于工程验收，不需要用户编写声明。
+Firefox 当前生成清单声明 required: none，optional: browsingActivity, authenticationInfo, bookmarksInfo, technicalAndInteraction, searchTerms。这不是签名或审核通过证明。同步只请求浏览活动、认证信息、主动复制的书签链接，以及启用偏好同步时的设置数据授权；开始页搜索在提交查询时单独申请 searchTerms，拒绝或撤销时不发送。仍需 AMO 最终校验与签名。
 
 依据：[Chrome 隐私字段](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy)、[Firefox 数据传输同意](https://extensionworkshop.com/documentation/develop/firefox-builtin-data-consent/)。

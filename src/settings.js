@@ -1,4 +1,5 @@
 import {formatNamespace,rebrandContent,BRAND_TITLE} from './brand.js';
+import {secureSyncUrl} from './network-policy.js';
 export const STORAGE_KEY='qiye-workspace-v1';
 export const PREFS_KEY='qiye-preferences-v2';
 export const SECRETS_KEY='qiye-sync-credentials-v1';
@@ -94,7 +95,7 @@ export const SETTINGS_SECTIONS=[
  ]},
  {id:'sync',icon:'refresh',zh:'同步配置',en:'Sync',intro:'把收藏带到其他设备。连接信息单独保存在本机，凭据不进入配置导出。',fields:[
   f('syncProvider','segments','同步服务','Sync service','选择服务并保存连接配置后，才会发起同步。',[['none','仅本地'],['webdav','WebDAV'],['gist','GitHub Gist']]),
-  f('webdavUrl','url','WebDAV 文件地址','WebDAV file URL','填写完整 JSON 文件地址，例如 https://example.com/dav/qiye.json。',[],{when:['syncProvider','webdav']}),
+  f('webdavUrl','url','WebDAV 文件地址','WebDAV file URL','仅支持 HTTPS，填写完整 JSON 文件地址，例如 https://example.com/dav/qiye.json。',[],{when:['syncProvider','webdav']}),
   f('gistId','text','Gist ID','Gist ID','已有 Gist 的 ID；留空则首次同步时创建不公开列出的 Secret Gist。',[],{when:['syncProvider','gist']}),
   f('syncPreferences','toggle','同步收藏时包含偏好设置','Include preferences in sync','不包含同步地址、凭据、自动同步计划和本机启动行为。'),
   f('autoSync','toggle','开启自动同步','Enable automatic sync','扩展关闭工作台后仍通过浏览器定时任务执行；网页演示仅在页面打开时执行。'),
@@ -139,7 +140,7 @@ export function normalizeSettings(input={}){
 export function validateSettings(input){
   const s=normalizeSettings(input);
   if(input.backgroundModifier===input.foregroundModifier)throw new Error('前台和后台打开的修饰键不能相同');
-  if(s.syncProvider==='webdav'&&s.webdavUrl){const url=new URL(s.webdavUrl);if(!['https:','http:'].includes(url.protocol)||url.username||url.password)throw new Error('请输入 HTTP(S) 文件地址，账号密码请填在单独的凭据栏');}
+  if(s.syncProvider==='webdav'&&s.webdavUrl)secureSyncUrl(s.webdavUrl);
   if(s.gistId&&!/^[a-f0-9]+$/i.test(s.gistId))throw new Error('Gist ID 只能包含十六进制字符');
   if(s.autoSync&&(s.syncProvider==='none'||(s.syncProvider==='webdav'&&!s.webdavUrl)))throw new Error('请先配置同步服务，再开启自动同步');
   if(s.autoSync&&s.syncProvider==='gist'&&!s.gistId)throw new Error('请先手动同步一次生成 Gist ID，再开启自动同步');

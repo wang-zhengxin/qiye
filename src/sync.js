@@ -1,4 +1,5 @@
 import {requireSyncConsent} from './platform.js';
+import {secureSyncUrl} from './network-policy.js';
 import {uid} from './data.js';
 import {safeUrl} from './model.js';
 import {normalizeSettings,portableSettings} from './settings.js';
@@ -27,14 +28,14 @@ export function mergeRemote(local,remote){
   return local;
 }
 export async function runSync(state,{credentials={},fetcher=globalThis.fetch,mode=state.settings.syncMode,test=false}={}){
-  await requireSyncConsent();
+  await requireSyncConsent(undefined,state.settings);
   const settings=state.settings;
   if(settings.syncProvider==='none')throw new Error('请先选择并保存同步服务');
   const provider=settings.syncProvider;
   let endpoint,headers={};
   if(provider==='webdav'){
     if(!settings.webdavUrl)throw new Error('请先保存 WebDAV 文件地址');
-    const url=new URL(settings.webdavUrl);if(!['http:','https:'].includes(url.protocol)||url.username||url.password)throw new Error('同步地址不正确');endpoint=url.href;
+    const url=secureSyncUrl(settings.webdavUrl);endpoint=url.href;
     if(credentials.username||credentials.password){if(credentials.webdavOrigin!==url.origin)throw new Error('同步服务地址已改变，请重新输入该服务的账号密码');const bytes=new TextEncoder().encode(`${credentials.username||''}:${credentials.password||''}`);headers.Authorization=`Basic ${btoa(Array.from(bytes,b=>String.fromCharCode(b)).join(''))}`;}
   }else{
     if(!credentials.token)throw new Error('请先保存 GitHub Token');

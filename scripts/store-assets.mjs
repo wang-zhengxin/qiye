@@ -96,6 +96,6 @@ try{
   }
 }finally{await browser.close();}
 const sources={};
-for(const file of ['src/app.js','src/settings-view.js','styles.css','settings.css','panes.css','src/layout.js','src/tab-titles.js','src/data.js'])sources[file]=createHash('sha256').update(await readFile(resolve(root,file))).digest('hex');
+for(const file of ['src/app.js','src/settings-view.js','src/settings.js','src/platform.js','src/network-policy.js','styles.css','settings.css','panes.css','src/layout.js','src/tab-titles.js','src/data.js'])sources[file]=createHash('sha256').update(await readFile(resolve(root,file))).digest('hex');
 await writeFile(resolve(output,'screenshots.json'),JSON.stringify({browser:browser.version(),sampleData:true,credentialsUsed:false,sources,captures},null,2)+'\n');
 console.log(`Captured ${captures.length} screenshots at 1280×800 in fresh isolated browser contexts.`);

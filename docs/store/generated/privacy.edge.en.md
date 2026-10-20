@@ -1,6 +1,6 @@
 # Qiye for Microsoft Edge Privacy Policy
 
-Effective date: 2026-10-19 · Product version reviewed: 1.5.1
+Effective date: 2026-10-20 · Product version reviewed: 1.5.2
 
 Operator: The individual developer of Qiye. Contact: wangzhengxin007@gmail.com.
 
@@ -18,11 +18,11 @@ Remote sync is disabled by default. If you choose and configure WebDAV or GitHub
 
 WebDAV credentials are sent to your configured server for authentication; a GitHub token is sent to GitHub's API for authentication. These credentials are not included in exported collections or remote collection JSON. A provider receives normal connection information such as your IP address and request metadata. GitHub connection tests can request your account information to validate authentication. Qiye does not send these collections to a developer-operated sync server.
 
-If you choose the optional start page and submit a search, your query is sent by navigation to the search engine you select. Opening saved links takes you to those websites, which apply their own policies. The extension code contains no advertising, analytics SDK, tracking beacon, or third-party favicon request. The developer does not sell browsing data or use it for targeted advertising.
+If you choose the optional start page and submit a search, your query is sent by navigation to the search engine you select. Firefox separately requests searchTerms consent when you submit a query; declining prevents the search navigation. Opening saved links takes you to those websites, which apply their own policies. The extension code contains no advertising, analytics SDK, tracking beacon, or third-party favicon request. The developer does not sell browsing data or use it for targeted advertising.
 
 ## Security and storage limitations
 
-Use HTTPS for remote sync. Version 1.5.1 also accepts HTTP WebDAV addresses; HTTP does not encrypt connection content or authentication information. Do not use it for public-network transfers. Secret Gists are unlisted, not private encrypted vaults: anyone who obtains their URL may be able to read them. Qiye does not implement end-to-end encryption.
+Remote sync requires HTTPS. Plain HTTP endpoints, including previously saved ones, are rejected before any request or credential is sent. Redirects are rejected. TLS is provided by the browser; Qiye does not add application-level encryption. Secret Gists are unlisted, not private encrypted vaults: anyone who obtains their URL may be able to read them. Qiye does not implement end-to-end encryption.
 
 Extension credentials are stored separately in browser-local extension storage. Qiye does not encrypt them with an additional application encryption key or store them in the operating system's keychain. Protect your browser profile and device and use narrowly scoped, revocable credentials. Collection exports are ordinary readable JSON files, not encrypted backups.
 

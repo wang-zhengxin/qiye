@@ -13,3 +13,8 @@ test('search always needs a source and a field',()=>{assert.throws(()=>validateS
 test('copy templates need a URL token',()=>{assert.throws(()=>validateSettings({...DEFAULT_SETTINGS,copyTemplate:'{{title}}'}),/url/);});
 test('sensitive URL credentials and invalid automatic sync are rejected',()=>{assert.throws(()=>validateSettings({...DEFAULT_SETTINGS,syncProvider:'webdav',webdavUrl:'https://user:pass@example.com/'}));assert.throws(()=>validateSettings({...DEFAULT_SETTINGS,autoSync:true}));assert.throws(()=>validateSettings({...DEFAULT_SETTINGS,syncProvider:'gist',autoSync:true}),/手动同步/);});
 test('multiple and overnight sync time windows work in local time',()=>{const at=(h,m)=>new Date(2026,9,16,h,m);assert.equal(inSyncWindow([{start:'23:00',end:'06:00'}],at(1,30)),true);assert.equal(inSyncWindow([{start:'23:00',end:'06:00'}],at(12,0)),false);assert.equal(inSyncWindow([{start:'09:00',end:'10:00'},{start:'14:00',end:'15:00'}],at(14,30)),true);});
+
+test('WebDAV configuration rejects plaintext endpoints, including loopback and embedded credentials',()=>{
+ for(const webdavUrl of ['http://example.com/file.json','http://127.0.0.1:8080/file.json','https://user:pass@example.com/file.json','ftp://example.com/file.json'])assert.throws(()=>validateSettings({...DEFAULT_SETTINGS,syncProvider:'webdav',webdavUrl}));
+ assert.equal(validateSettings({...DEFAULT_SETTINGS,syncProvider:'webdav',webdavUrl:'https://example.com/file.json'}).webdavUrl,'https://example.com/file.json');
+});

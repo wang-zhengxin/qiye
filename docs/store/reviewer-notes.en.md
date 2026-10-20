@@ -39,7 +39,7 @@ To test sync, use a dedicated HTTPS WebDAV file URL or your own test GitHub toke
 
 See generated/permissions.md for the purpose of each permission. There is no history permission, scripting permission, or content script. Executable scripts and styles are packaged locally; remote sync only parses validated JSON. Extension runtime code has no third-party dependencies.
 
-Sync transmits saved link titles and URLs and uses credentials for provider authentication. Native bookmark trees are excluded from remote collection JSON. The current version accepts HTTP WebDAV and does not implement end-to-end encryption or application-level credential encryption; privacy documents disclose these limits. HTTPS handling is a remaining engineering release check, not a certified security property. Firefox data categories, including optional start-page searches, still require validation against the actual AMO submission.
+Sync transmits saved link titles and URLs and uses credentials for provider authentication. Native bookmark trees are excluded from remote collection JSON. Remote sync accepts HTTPS only; plaintext endpoints are rejected before sending requests or credentials, and redirects are rejected. Qiye does not implement end-to-end encryption or application-level credential encryption. Firefox sync requests only the relevant optional data categories, with technicalAndInteraction required only when syncing preferences. The optional start page separately requests searchTerms when submitting a query; declining blocks that search. Final AMO validation and signing remain platform steps.
 
 ## Reproduce the Firefox package from source
 

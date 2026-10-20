@@ -10,7 +10,7 @@
 
 Qiye is a local-first workspace for browser tabs and bookmarks. Manage open tabs, native tab groups, saved sessions, and browser bookmarks in one place, with drag-and-drop organization and a stash for links you want to revisit.
 
-Current version: **v1.5.1** · Manifest V3 · Simplified Chinese / English · No third-party runtime dependencies
+Current version: **v1.5.2** · Manifest V3 · Simplified Chinese / English · No third-party runtime dependencies
 
 [Download latest](https://github.com/wang-zhengxin/qiye/releases/latest) · [Features](#features) · [Browser support](#browser-support) · [Install and run](#install-and-run) · [Usage guide](#usage-guide) · [FAQ](#faq)
 
@@ -149,9 +149,9 @@ npm run package
 Packages are written to `artifacts/`. Their names follow the project version:
 
 ```text
-qiye-workspace-chromium-v1.5.1.zip
-qiye-workspace-firefox-v1.5.1.zip
-qiye-workspace-safari-source-v1.5.1.zip
+qiye-workspace-chromium-v1.5.2.zip
+qiye-workspace-firefox-v1.5.2.zip
+qiye-workspace-safari-source-v1.5.2.zip
 ```
 
 The Safari ZIP contains conversion source. For commands that build a single target, see [Development and validation](#development-and-validation).
@@ -230,7 +230,7 @@ Bookmarks in an imported file are saved in an imported-bookmarks session, rather
 ### Set up remote sync
 
 1. Choose WebDAV or GitHub Gist in sync preferences.
-2. For WebDAV, enter a complete JSON file URL; its parent directory must already exist. For Gist, use a token with the required permissions and optionally provide an existing Secret Gist ID.
+2. For WebDAV, enter a complete HTTPS JSON file URL (HTTP is rejected); its parent directory must already exist. For Gist, use a token with the required permissions and optionally provide an existing Secret Gist ID.
 3. Save the connection settings and grant access to the destination site. Firefox also requests optional data-transmission consent.
 4. Test the connection, then sync manually. If the Gist ID is empty, the first manual sync creates a Secret Gist. Automatic sync can be enabled after an ID has been created.
 
@@ -254,7 +254,7 @@ Qiye uses JavaScript ES Modules, CSS, Manifest V3, and native browser extension 
 | `npm run store:materials` | Generate bilingual store listings, privacy policies, permission explanations, and support documents. |
 | `npm run safari:project` | Generate a macOS Safari app project using full Xcode. |
 
-The current **118 automated tests** cover data movement, lock protection, recycle-bin recovery, import validation, deduplication, multiple windows, save-before-close behavior, preference migration, sync protocols, Firefox APIs, capability fallbacks, release version checks, and checksums.
+The current **121 automated tests** cover data movement, lock protection, recycle-bin recovery, import validation, deduplication, multiple windows, save-before-close behavior, preference migration, sync protocols, Firefox APIs, capability fallbacks, release version checks, and checksums.
 
 The interface has been checked through web interactions. Native extension APIs and sync protocols are tested using mocks. The extension has not been installed and tested in every supported browser, and end-to-end tests against a user's real WebDAV or Gist service have not been performed.
 
@@ -262,18 +262,18 @@ The interface has been checked through web interactions. Native extension APIs a
 
 - Pushes to `main` and pull requests trigger [Build and test](https://github.com/wang-zhengxin/qiye/actions/workflows/ci.yml): version checks, tests, three browser builds, ZIP verification, and SHA-256 verification. Build downloads are retained for 7 days. The workflow also supports manual runs from Actions.
 - Pushing a `v*` tag triggers [Release](https://github.com/wang-zhengxin/qiye/actions/workflows/release.yml). After checks pass and all assets are uploaded, the workflow publishes a GitHub Release using the repository's built-in `GITHUB_TOKEN`; no personal token is required.
-- The tag must exactly match the versions in both `package.json` and `manifest.json`. For example, version `1.5.2` requires tag `v1.5.2`. Failed checks prevent publication, and published downloads are not overwritten by the workflow.
+- The tag must exactly match the versions in both `package.json` and `manifest.json`. For example, version `1.5.3` requires tag `v1.5.3`. Failed checks prevent publication, and published downloads are not overwritten by the workflow.
 
-For the next version, update both version fields and the README examples, and optionally add `docs/releases/v1.5.2.md`. Commit and push those changes, then run:
+For the next version, update both version fields and the README examples, and optionally add `docs/releases/v1.5.3.md`. Commit and push those changes, then run:
 
 ```bash
 npm test
-npm run release:build -- --tag=v1.5.2
-git tag v1.5.2
-git push origin v1.5.2
+npm run release:build -- --tag=v1.5.3
+git tag v1.5.3
+git push origin v1.5.3
 ```
 
-Here `1.5.2` is an example for the next release. Releases provide permanent version downloads; Actions artifacts are for build verification. These workflows produce extension ZIPs and do not submit to browser stores, sign Firefox extensions, or sign Safari apps.
+Here `1.5.3` is an example for the next release. Releases provide permanent version downloads; Actions artifacts are for build verification. These workflows produce extension ZIPs and do not submit to browser stores, sign Firefox extensions, or sign Safari apps.
 
 ### Project structure
 
