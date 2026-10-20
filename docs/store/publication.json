@@ -1,0 +1,45 @@
+{
+  "version": "1.5.2",
+  "updatedOn": "2026-10-20",
+  "github": {
+    "status": "published",
+    "tag": "v1.5.2",
+    "url": "https://github.com/wang-zhengxin/qiye/releases/tag/v1.5.2",
+    "sourceCommit": "9d1ac4017f54289fd0e61207a3ce9c6c757ffe27",
+    "workflowUrl": "https://github.com/wang-zhengxin/qiye/actions/runs/39379111653",
+    "publishedAt": "2026-10-20T06:13:13Z"
+  },
+  "stores": {
+    "chrome": {
+      "status": "not_submitted",
+      "itemId": null,
+      "listingUrl": null,
+      "blocker": "Google login confirmation and browser automation access"
+    },
+    "edge": {
+      "status": "not_submitted",
+      "itemId": null,
+      "listingUrl": null,
+      "blocker": "Developer page opened; browser automation access still required"
+    },
+    "firefox": {
+      "status": "not_submitted",
+      "itemId": null,
+      "listingUrl": null,
+      "blocker": "Developer page opened; browser automation access and final AMO validation/signing still required"
+    }
+  },
+  "checks": {
+    "automatedTestsPassed": 121,
+    "firefoxLinter": {
+      "tool": "web-ext 10.8.0",
+      "errors": 0,
+      "notices": 0,
+      "warnings": 23
+    },
+    "httpsOnlySync": true,
+    "scopedFirefoxConsent": true,
+    "publicPoliciesVerified": true
+  },
+  "notes": "GitHub publication is complete. No browser-store submission or approval is claimed."
+}

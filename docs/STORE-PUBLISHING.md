@@ -7,7 +7,7 @@
 - [x] 项目名称与品牌图标。
 - [x] 中文、英文 README，以及安装、浏览器兼容和配置说明。
 - [x] Chromium、Firefox、Safari 转换源三个独立构建目标。
-- [x] v1.5.0 GitHub Release、三个 ZIP 和 SHA-256 校验文件。
+- [x] v1.5.2 GitHub Release、三个 ZIP 和 SHA-256 校验文件。
 - [x] GitHub 自动测试、打包、版本标签触发的 Release 发布；本次验证 121 项测试通过。
 - [x] Chrome、Edge、Firefox 三个商店账号已注册（用户确认）。
 - [x] Chrome 账号认证已通过（用户确认）。
@@ -18,7 +18,7 @@
 - [ ] 各目标浏览器真实安装、升级与同步验收：尚未全部完成。
 - [ ] Firefox 正式签名、Safari App Store 可分发构建：尚未完成。
 
-现有 GitHub 流程发布的是 GitHub Release，尚未配置向浏览器商店提交或发布。
+v1.5.2 已由 GitHub 流程公开发布。Chrome、Edge、Firefox 均尚未提交审核，实时记录见 docs/store/publication.json；尚未配置自动向商店提交的凭据。
 
 ## 1. 你需要提供或确认
 

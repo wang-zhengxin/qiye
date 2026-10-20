@@ -48,7 +48,7 @@ GitHub [Build and test #39227946431](https://github.com/wang-zhengxin/qiye/actio
 
 ## 材料包与版本关系
 
-本材料包对应当前 v1.5.2 源码及本地构建，附带 MIT 许可证。本次未创建新的公开 GitHub Release，也未覆盖既有 v1.5.0 附件；当前包以本次 SHA256SUMS 为准。
+本材料包对应当前 v1.5.2 源码及本地构建，附带 MIT 许可证。已通过独立标签发布 [GitHub v1.5.2](https://github.com/wang-zhengxin/qiye/releases/tag/v1.5.2)，未覆盖既有版本；当前包以本次 SHA256SUMS 为准。
 
 ## v1.5.1 界面修复验收
 
@@ -68,3 +68,10 @@ GitHub [Build and test #39227946431](https://github.com/wang-zhengxin/qiye/actio
 - 16 项 UNSUPPORTED_API 提示指向本项目 BrowserAdapter 对象的 capabilities 字段，属于同名 browser 标识被误识别为原生接口；6 项 innerHTML 提示需人工审阅，外部标题/网址/错误消息使用 esc 转义，未加载远端执行代码。
 - Android 最低版本提示保留：本项目仅面向桌面 Firefox，未声明 gecko_android，商店不选择 Android。桌面最低 140 支持数据传输授权；该提示不作为 Android 兼容验收。
 - 商店提交状态必须以平台返回为准，生成材料和通过本地校验均不等于已提交或已上线。
+
+## 实际发布状态（2026-10-20）
+
+- GitHub v1.5.2 已公开发布，发布流程 [39379111653](https://github.com/wang-zhengxin/qiye/actions/runs/39379111653) 成功；Chromium、Firefox、Safari 转换源和 SHA256SUMS 均已上传。
+- 本次公开政策和支持文件以匿名请求读取，六份文件均可访问且内容与本地一致。
+- Chrome、Edge、Firefox 商店均尚未提交，也没有编造扩展 ID 或商店页面。已打开三个官方开发者后台；Chrome 当前仍需本人完成 Google 登录确认，浏览器脚本控制开关尚待确认。
+- 可机读状态见 publication.json。GitHub 发布不等于商店审核通过；Firefox ZIP 仍是未签名提交/临时测试包。
