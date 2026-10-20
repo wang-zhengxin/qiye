@@ -9,8 +9,8 @@
 - [x] Chromium、Firefox、Safari 转换源三个独立构建目标。
 - [x] v1.5.2 GitHub Release、三个 ZIP 和 SHA-256 校验文件。
 - [x] GitHub 自动测试、打包、版本标签触发的 Release 发布；本次验证 121 项测试通过。
-- [x] Chrome、Edge、Firefox 三个商店账号已注册（用户确认）。
-- [x] Chrome 账号认证已通过（用户确认）。
+- [x] 三家服务的登录账号已准备；Chrome Web Store 开发者资格仍需单独完成注册（2026-10-20 后台实测）。
+- [ ] Chrome Web Store 开发者注册：当前页面仍要求接受协议及一次性 USD 5 注册费；Google Play USD 25 不是该项注册。
 - [x] 发布基本信息已确认：个人发布，公开支持邮箱为 wangzhengxin007@gmail.com，首版免费。
 - [ ] 各后台尚需完成的发布设置、双重验证或额外核验：提交前检查；Edge、Firefox 的额外核验状态未单独确认。
 - [x] 中英文隐私政策及 Edge 专用版本已按实现生成，文件见 docs/store/generated/；公开链接的发布验证见 docs/store/verification.md。
@@ -28,7 +28,7 @@ v1.5.2 已由 GitHub 流程公开发布。Chrome、Edge、Firefox 均尚未提�
 - [ ] 审核通知联系人及接收通知的后台配置：提交前检查。
 - [x] 收费方式：首版免费（用户确认）。
 - [x] 栖页 Qiye 的中文和英文商店简介、详细功能说明已自动生成。
-- [x] Chrome、Edge、Firefox 商店账号注册；Firefox 使用与 Chrome 相同的 Google 账号登录（用户确认）。
+- [x] 登录账号已准备，Firefox 使用与 Chrome 相同的 Google 账号；Chrome Web Store 发布资格尚待单独注册。
 - [x] Chrome 账号认证通过（用户确认）。
 - [ ] 提交前检查三个后台是否仍有发布设置、双重验证、付款或额外身份核验提示；不把账号注册等同于所有发布设置均已完成。
 - [x] 政策使用“栖页 Qiye 个人开发者”作为事实性运营者称呼，生效日期 2026-10-19，联系邮箱 wangzhengxin007@gmail.com。
@@ -43,7 +43,7 @@ v1.5.2 已由 GitHub 流程公开发布。Chrome、Edge、Firefox 均尚未提�
 
 | 渠道 | 账号和准备项 | 当前项目还需完成 |
 | --- | --- | --- |
-| Chrome Web Store | 账号已注册、认证已通过；提交前检查剩余后台设置 | 文案素材、隐私披露、权限理由、Chromium ZIP 和安装实测 |
+| Chrome Web Store | Google 已登录；后台仍显示开发者注册协议及 USD 5 一次性费用 | 文案素材、隐私披露、权限理由、Chromium ZIP 和安装实测 |
 | Microsoft Edge Add-ons | 账号已注册；该扩展计划无注册费 | 检查后台是否还有核验提示；Edge 实测，准备面向 Edge 的文案、截图、隐私说明与 Chromium ZIP |
 | Firefox Add-ons / AMO | 账号已注册，使用与 Chrome 相同的 Google 账号登录 | Firefox ZIP、商店资料、隐私政策、审核说明与必要的源码构建资料；完成 AMO 校验、数据传输同意流程实测、签名及正式扩展 ID 确认 |
 | Safari / App Store | Apple Developer Program（99 USD/年或当地价格）、App Store Connect、应用标识、商店素材、隐私资料、打包与签名 | 先完成 macOS Safari 打包、安装及功能降级验证；当前 source ZIP 不是可直接安装的应用 |

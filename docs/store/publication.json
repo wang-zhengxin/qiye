@@ -14,19 +14,22 @@
       "status": "not_submitted",
       "itemId": null,
       "listingUrl": null,
-      "blocker": "Google login confirmation and browser automation access"
+      "blocker": "Current account is on Chrome Web Store developer registration: agreement acceptance and a separate one-time USD 5 fee are still required. Google Play registration is a different program.",
+      "stage": "developer_registration_required"
     },
     "edge": {
       "status": "not_submitted",
       "itemId": null,
       "listingUrl": null,
-      "blocker": "Developer page opened; browser automation access still required"
+      "blocker": "Official Microsoft Edge extension overview reached, but the page did not render an upload form; refresh and the documented login entry were attempted.",
+      "stage": "dashboard_loading_blocked"
     },
     "firefox": {
       "status": "not_submitted",
       "itemId": null,
       "listingUrl": null,
-      "blocker": "Developer page opened; browser automation access and final AMO validation/signing still required"
+      "blocker": "Signed in to Developer Hub; opening first add-on submission redirects to Mozilla account step-up authentication (Client Challenge). User verification is required.",
+      "stage": "account_verification_required"
     }
   },
   "checks": {
@@ -41,5 +44,5 @@
     "scopedFirefoxConsent": true,
     "publicPoliciesVerified": true
   },
-  "notes": "GitHub publication is complete. No browser-store submission or approval is claimed."
+  "notes": "GitHub publication is complete. All browser stores remain unsubmitted. Native browser control is available; account registration, verification and Edge page loading now block submission."
 }

@@ -73,5 +73,12 @@ GitHub [Build and test #39227946431](https://github.com/wang-zhengxin/qiye/actio
 
 - GitHub v1.5.2 已公开发布，发布流程 [39379111653](https://github.com/wang-zhengxin/qiye/actions/runs/39379111653) 成功；Chromium、Firefox、Safari 转换源和 SHA256SUMS 均已上传。
 - 本次公开政策和支持文件以匿名请求读取，六份文件均可访问且内容与本地一致。
-- Chrome、Edge、Firefox 商店均尚未提交，也没有编造扩展 ID 或商店页面。已打开三个官方开发者后台；Chrome 当前仍需本人完成 Google 登录确认，浏览器脚本控制开关尚待确认。
+- Chrome、Edge、Firefox 商店均尚未提交，也没有编造扩展 ID 或商店页面。已打开三个官方开发者后台；Chrome 已完成 Google 登录，但当前账号仍停在 Chrome Web Store 开发者注册页，需接受协议及单独支付一次性 5 美元注册费。原生浏览器控制已可用。
 - 可机读状态见 publication.json。GitHub 发布不等于商店审核通过；Firefox ZIP 仍是未签名提交/临时测试包。
+
+## 后台实测进度（2026-10-20）
+
+- Chrome：当前 Google 账号显示开发者协议及一次性 USD 5 注册费，尚不能上传扩展。Google Play 的 USD 25 注册属于另一计划，不能据此判断 Chrome Web Store 已注册。协议和付款留给用户本人完成。
+- Firefox：开发者中心已有登录态，首次提交入口会转到 Mozilla 账号增强验证（Client Challenge）；尚未上传文件或接受首次发布协议，等待本人验证。
+- Edge：使用微软发布文档中的 Partner Center 官方入口进入扩展 overview；页面没有呈现上传表单，已尝试刷新，尚未创建扩展条目。
+- 本次没有付款、没有代替用户接受开发者协议，也没有提交任何商店审核。材料和 GitHub 下载保持可用。
