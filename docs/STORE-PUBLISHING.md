@@ -9,16 +9,17 @@
 - [x] Chromium、Firefox、Safari 转换源三个独立构建目标。
 - [x] v1.5.2 GitHub Release、三个 ZIP 和 SHA-256 校验文件。
 - [x] GitHub 自动测试、打包、版本标签触发的 Release 发布；本次验证 121 项测试通过。
-- [x] 三家服务的登录账号已准备；Chrome Web Store 开发者资格仍需单独完成注册（2026-10-20 后台实测）。
-- [ ] Chrome Web Store 开发者注册：当前页面仍要求接受协议及一次性 USD 5 注册费；Google Play USD 25 不是该项注册。
+- [x] 三家服务的登录账号已准备；Chrome Web Store 独立开发者注册已由用户完成并在后台核实（2026-10-20）。
+- [x] Chrome Web Store 开发者注册已完成；Google Play 与 Chrome Web Store 是不同注册计划。
+- [x] Chrome 发布者联系邮箱已验证，v1.5.2 已正式提交；后台显示“待审核”。
 - [x] 发布基本信息已确认：个人发布，公开支持邮箱为 wangzhengxin007@gmail.com，首版免费。
-- [ ] 各后台尚需完成的发布设置、双重验证或额外核验：提交前检查；Edge、Firefox 的额外核验状态未单独确认。
+- [x] 三家均已完成本轮提交流程并返回审核状态；平台后续要求的补充身份核验仍需账号本人处理。
 - [x] 中英文隐私政策及 Edge 专用版本已按实现生成，文件见 docs/store/generated/；公开链接的发布验证见 docs/store/verification.md。
 - [x] 三家商店中英文文案、十张 1280×800 截图、四种尺寸图标和中英文宣传图已生成，见 docs/store/。
 - [ ] 各目标浏览器真实安装、升级与同步验收：尚未全部完成。
 - [ ] Firefox 正式签名、Safari App Store 可分发构建：尚未完成。
 
-v1.5.2 已由 GitHub 流程公开发布。Firefox v1.5.2 已提交并显示等待审核；Edge v1.5.2 已提交并显示正在审阅；Chrome 尚未提交审核，实时记录见 docs/store/publication.json；尚未配置自动向商店提交的凭据。
+v1.5.2 已由 GitHub 流程公开发布。Chrome v1.5.2 已提交并显示待审核；Firefox v1.5.2 已提交并显示等待审核；Edge v1.5.2 已提交并显示正在审阅。三家均尚未核实公开可安装；实时记录见 docs/store/publication.json；尚未配置自动向商店提交的凭据。
 
 ## 1. 你需要提供或确认
 
@@ -28,9 +29,9 @@ v1.5.2 已由 GitHub 流程公开发布。Firefox v1.5.2 已提交并显示等�
 - [ ] 审核通知联系人及接收通知的后台配置：提交前检查。
 - [x] 收费方式：首版免费（用户确认）。
 - [x] 栖页 Qiye 的中文和英文商店简介、详细功能说明已自动生成。
-- [x] 登录账号已准备，Firefox 使用与 Chrome 相同的 Google 账号；Chrome Web Store 发布资格尚待单独注册。
+- [x] 登录账号已准备，Firefox 使用与 Chrome 相同的 Google 账号；Chrome Web Store 独立开发者注册已完成。
 - [x] Chrome 账号认证通过（用户确认）。
-- [ ] 提交前检查三个后台是否仍有发布设置、双重验证、付款或额外身份核验提示；不把账号注册等同于所有发布设置均已完成。
+- [x] 本轮已检查并完成三个后台的提交步骤；Chrome 交易者账号核验仍显示待处理，但本轮未阻止送审，没有改动用户既有的交易者声明。
 - [x] 政策使用“栖页 Qiye 个人开发者”作为事实性运营者称呼，生效日期 2026-10-20，联系邮箱 wangzhengxin007@gmail.com。
 - [x] 用户确认代码与素材有发布授权；已有来源说明保留。
 - [x] 用户选择 MIT 开源许可；已加入 LICENSE，并随构建与材料包分发。
@@ -43,9 +44,9 @@ v1.5.2 已由 GitHub 流程公开发布。Firefox v1.5.2 已提交并显示等�
 
 | 渠道 | 账号和准备项 | 当前项目还需完成 |
 | --- | --- | --- |
-| Chrome Web Store | Google 已登录；后台仍显示开发者注册协议及 USD 5 一次性费用 | 文案素材、隐私披露、权限理由、Chromium ZIP 和安装实测 |
-| Microsoft Edge Add-ons | 账号已注册；该扩展计划无注册费 | 检查后台是否还有核验提示；Edge 实测，准备面向 Edge 的文案、截图、隐私说明与 Chromium ZIP |
-| Firefox Add-ons / AMO | 账号已注册，使用与 Chrome 相同的 Google 账号登录 | Firefox ZIP、商店资料、隐私政策、审核说明与必要的源码构建资料；完成 AMO 校验、数据传输同意流程实测、签名及正式扩展 ID 确认 |
+| Chrome Web Store | 开发者注册及联系邮箱验证完成，发布者 wangzhengxin007；v1.5.2 已提交，待审核 | 等待平台审核，之后核实公开安装与上架状态 |
+| Microsoft Edge Add-ons | v1.5.2、英文资料、素材及隐私说明已提交；后台正在审阅 | 等待平台审核；Edge 原生功能实测及公开安装核验 |
+| Firefox Add-ons / AMO | v1.5.2、双语资料、素材及审核源码已提交；后台等待审核 | 等待平台审核与签名；完成正式签名安装及权限流程实测 |
 | Safari / App Store | Apple Developer Program（99 USD/年或当地价格）、App Store Connect、应用标识、商店素材、隐私资料、打包与签名 | 先完成 macOS Safari 打包、安装及功能降级验证；当前 source ZIP 不是可直接安装的应用 |
 | Opera Add-ons（可选） | Opera 开发者资料、商店文案、素材与符合其要求的扩展包，提交独立审核 | 在 Opera 中验证原生分组、休眠、书签等实际能力后再提交 |
 
@@ -111,7 +112,7 @@ Safari 可选用 Apple 的 [App Store Connect 云端打包](https://developer.ap
 - [ ] 单独提供开发者 ZIP、版本号、校验文件、更新记录及安装教程。Chromium ZIP 先解压加载，不能描述为普通用户点击 ZIP 即安装。
 - [ ] Firefox 面向普通用户的直接下载使用已签名 XPI；当前 Release 中未签名 ZIP 继续标记为测试用途。参考：[Firefox 自分发](https://extensionworkshop.com/documentation/publish/self-distribution/)。
 - [ ] 提供隐私政策、支持邮箱或问题反馈入口。
-- [x] 已记录 Firefox UUID、版本 ID、产品地址，以及 Edge 产品 ID、Store ID 和 CRX ID，见 docs/store/publication.json。
+- [x] 已记录 Chrome 扩展 ID 和后台地址、Firefox UUID、版本 ID、产品地址，以及 Edge 产品 ID、Store ID 和 CRX ID，见 docs/store/publication.json。
 - [ ] 审核通过后核实商店公开可安装状态、签名下载及审核通知渠道。
 - [ ] 首版建议手动提交，待账号和扩展 ID 稳定后，再决定是否给 GitHub 工作流增加商店上传能力。自动上传不等于免审核，也不等于自动公开发布。
 

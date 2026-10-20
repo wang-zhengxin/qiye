@@ -11,11 +11,31 @@
   },
   "stores": {
     "chrome": {
-      "status": "not_submitted",
-      "itemId": null,
+      "status": "submitted",
+      "itemId": "igfgcpflpbombliknldgahfanjdajjcl",
       "listingUrl": null,
-      "blocker": "Current account is on Chrome Web Store developer registration: agreement acceptance and a separate one-time USD 5 fee are still required. Google Play registration is a different program.",
-      "stage": "developer_registration_required"
+      "blocker": null,
+      "stage": "pending_review",
+      "submittedOn": "2026-10-20",
+      "submissionReceipt": "已将您的扩展程序提交送审",
+      "dashboardStatus": "待审核",
+      "registrationVerified": true,
+      "publisherContactVerified": true,
+      "publisherDisplayName": "wangzhengxin007",
+      "dashboardUrl": "https://chrome.google.com/webstore/devconsole/21a5b1d7-f57b-40a0-ba60-b8dfd372264f/igfgcpflpbombliknldgahfanjdajjcl/edit/status",
+      "package": "qiye-workspace-chromium-v1.5.2.zip",
+      "packageUploaded": true,
+      "screenshots": 5,
+      "listingLanguages": [
+        "zh-CN"
+      ],
+      "descriptionLanguages": [
+        "zh-CN",
+        "en"
+      ],
+      "pricing": "free",
+      "visibility": "public",
+      "distribution": "all_available_regions"
     },
     "edge": {
       "status": "submitted",
@@ -69,5 +89,5 @@
     "scopedFirefoxConsent": true,
     "publicPoliciesVerified": true
   },
-  "notes": "GitHub v1.5.2 is published. Firefox is submitted and awaiting review; Edge is submitted and under review. Store availability/signing are not yet confirmed. Chrome requires separate developer registration and its one-time USD 5 fee. Published release assets are unchanged."
+  "notes": "GitHub v1.5.2 is published. Chrome, Edge and Firefox are submitted for review; public store installation has not yet been verified. Chrome publisher contact-email verification is complete and its submission receipt and pending-review status were observed. Published release assets are unchanged."
 }
